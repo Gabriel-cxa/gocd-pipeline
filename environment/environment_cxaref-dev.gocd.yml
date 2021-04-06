@@ -1,0 +1,1016 @@
+environments:
+  cxaref-dev:
+    environment_variables:
+      # AWS ECR
+      AWS_ECR_REGISTRY_NAME: "285584781843.dkr.ecr.ap-southeast-1.amazonaws.com"
+      #shared
+      ACR_AZURE_CLIENT_ID: "c5416a38-e023-460f-8913-dc81902a9d94"
+      PROD_ACR: "unicornprodAcr"
+      SHARED_APP_LOG_LEVEL_NODEJS: "debug" #Possible values: verbose, debug, info, warn, error
+      SHARED_APP_LOG_LEVEL_DOTNET: "Debug" #Possible values: Verbose, Debug, Information, Warning, Error, Fatal
+      SHARED_APP_LOG_LEVEL_DOTNET_MICROSOFT: "Warning"
+      SHARED_APP_LOG_LEVEL_DOTNET_SYSTEM: "Warning"
+      SFTP_PORT: "2222"
+      SFTP_USERNAME: "services"
+      CUSTOMER_SUPPORT__EMAIL: "help@cxagroup.com"
+      CUSTOMER_SUPPORT__PHONE: "+65 6220 9119"
+      CUSTOMER_SUPPORT__TEAMNAME: "The CXA Team"
+      CUSTOMER_TIMEZONE_OFFSET: "+08:00"
+      SHARED_FEATURE_TOGGLE_PATH: "/etc/config/feature-toggles.json"
+      SHARED_OL_FEATURE_TOGGLE_PATH: "/var/openfaas/secrets/feature-toggles.json"
+      SHARED_LOCALES_SUPPORTED: "en-UK,en-SG,en-HK,id-ID,th-TH" #Supported languages, separated values by comma
+      SHARED_LOCALE_DEFAULT: "en-HK" #Default supported language
+      RETAIL_CLIENT_ID: "retail-cxaref-dev"
+      #general-nats
+      NATS_SERVER_URL: "nats://nss-client.messaging:4222"
+      NATS_SERVER_URL_FOR_OPENFAAS: "nss-client.messaging"
+      NATS_STREAMING_CLUSTER_ID: "nats-streaming-cluster"
+      NATS_CONNECT_TIMEOUT: "5000"
+      NATS_STREAMING_CONNECT_TIMEOUT: "5000"
+      NATS_USE_STREAMING: "true"
+
+      #Redis settings
+      REDIS_CONNECTION_STRING: "redis-haproxy.shared-config"
+
+      #SQS settings
+      SQS_BENEFIT_INIT_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-benefit-init-job-queue.fifo"
+      SQS_CENSUS_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-census-job-queue.fifo"
+      SQS_CLAIM_SUBMISSION_TPA_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-claim-submission-tpa-queue.fifo"
+      SQS_DEAD_LETTER_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-dead-letter-queue.fifo"
+      SQS_EWALLET_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-ewallet-job-queue.fifo"
+      SQS_FACE_AGING: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-face-aging.fifo"
+      SQS_NOTIFICATION_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-notification-job-queue.fifo"
+      SQS_USERS_INIT_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-users-init-job-queue.fifo"
+      SQS_WALLET_JOB_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-wallet-job-queue.fifo"
+      SQS_VisibilityTimeoutSeconds: "60"
+      SQS_MessageRetentionSeconds: "345600"
+      SQS_DelaySeconds: "0"
+      SQS_MaxMessageSize: "262144"
+      SQS_ReceiveWaitTimeSeconds: "20"
+      SQS_ContentBasedDeduplication: "true"
+      Shared_QueueClientType: "SQS"
+      SQS_ReceiveRequestMaxNumberOfMessages: "1"
+
+      # Event Notifications
+      ## SNS Settings
+      SQS_EVENT_NOTIFICATION_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-events-notification-queue"
+      ## SQS Settings
+      SNS_PAYMEMT_EVENTS_TOPIC_ARN: "arn:aws:sns:ap-southeast-1:285584781843:cxaref-dev-payment-events-topic"
+      SNS_WELLNESS_EVENTS_TOPIC_ARN: "arn:aws:sns:ap-southeast-1:285584781843:cxaref-dev-wellness-events-topic"
+
+      #Storage service (S3) (used in content-service, member-listener)
+      S3_BASEURL: "s3.amazonaws.com"
+      S3_REGION: "ap-southeast-1"
+      S3_MEMBER_SERVICE_BUCKET_NAME: "cxaref-dev-member-service"
+      S3_ADMIN_SERVICE_BUCKET_NAME: "cxaref-dev-admin-service"
+      S3_WELLNESS_SERVICE_BUCKET_NAME: "cxaref-dev-wellness-service"
+      S3_CLAIM_SERVICE_BUCKET_NAME: "cxaref-dev-claim-service"
+      S3_CMS_PORTAL_BUCKET_NAME: "cxaref-dev-cms-portal"
+      S3_CAMEL_NOTIFICATION_SERVICE_BUCKET_NAME: "cxaref-dev-camel-notification-service"
+
+      #shared - auth config
+      ClaimNameSpace__ClientIdsHandledByAdmin: "http://auth.cxarefdev.com/client-ids-handled-by-admin"
+      ClaimNameSpace__ClientId: "http://auth.cxarefdev.com/clientid"
+      ClaimNameSpace__Role: "http://auth.cxarefdev.com/role"
+      ClaimNameSpace__PendingAction: "http://auth.cxarefdev.com/pending_action"
+      PendingActions__FirstLoginOTPVerification: "FirstLoginOTPVerification"
+      ClaimNameSpace__MemberId: "http://auth.cxarefdev.com/memberid"
+      # This variable is used for cxa1-cxa2 integration
+      ClaimNameSpace__ExternalId: "http://auth.cxarefdev.com/externalid"
+      #shared - census data reconcilliation toggle (notification-listener, member-listener)
+      FeatureToggle__CensusDataReconciliation: "true"
+      FeatureToggle__DependentTerminationDateChangeNotification: "false"
+      #shared - claim-service, benefit-service, client-service
+      FeatureToggle__VerifyClaimEligibilityPerClient: "false"
+      FeatureToggle__RequirePlanYearClientReference: "false"
+      FeatureToggle__UseExternalBenefits: "false"
+      FeatureToggle__ValidateCardTypeDetails: "false"
+      #shared - cxa1 census data import toggle (member-job, member-listener, admin-service, auth-service)
+      FeatureToggle__Cxa1CsvImport: "true"
+      #shared - admin-service, member-listener
+      #used to determine whether multiple clients mode is enabled in census upload,
+      #also be the cloud storage folder name for multiple clients case.
+      MULTIPLE_CLIENTS_CLIENT_ID: "all"
+      #shared
+      API_PUBLIC_DOMAIN: "https://api.cxarefdev.com"
+      PersonalEmailPreference: "true"
+      #OL-function
+      OL_INTERNAL_URL: "http://gateway.openfaas:8080"
+      CXA1_API_URL: "https://api.cxaonetest2.com/"
+      CLAIM_SERVICE_INTERNAL_URL: "http://distribution-claim-service.prod:5000"
+      CLIENT_SERVICE_INTERNAL_URL: "http://distribution-client-service.prod:5000"
+      MEMBER_SERVICE_INTERNAL_URL: "http://distribution-member-service.prod:5000"
+      AUTH_SERVICE_INTERNAL_URL: "http://distribution-auth-cognito-service.prod:5000"
+      BENEFIT_SERVICE_INTERNAL_URL: "http://distribution-benefit-service.prod:5000"
+      PAYMENT_SERVICE_INTERNAL_URL: "http://distribution-payment-service.prod:5000"
+      EWALLET_SERVICE_INTERNAL_URL: "http://distribution-ewallet-service.prod:5000"
+      CAMEL_NOTIFICATION_SERVICE_INTERNAL_URL: "http://distribution-camel-notification-service.prod:5000"
+      ETPA_SERVICE_INTERNAL_URL: "http://distribution-etpa-service.prod:5000"
+      VSHOP_SERVICE_INTERNAL_URL: "http://distribution-shop-service.prod:5000"
+
+      AUTH_COGNITO_AUTHORIZE_URL: "https://cxarefdev.auth.ap-southeast-1.amazoncognito.com/oauth2/authorize"
+      AUTH_COGNITO_SCOPE: "openid cxa/profile.ecommerce.read cxa/profile.write cxa/All"
+      AUTH_COGNITO_SSO_CLIENT_ID: "i1o7148ns6ra3kskfgg0jjgv3"
+      AUTH_COGNITO_NON_SSO_CLIENT_ID: "mv4614gkunlqfeiv3ciqj61pg"
+      SUPPORT_NON_FEDERATED_LOGIN: "true"
+      EHEALTHCARD_INSURER_NAME: "CXA-Heals Panel"
+      EHEALTHCARD_REMARKS: "Remarks: Referral Waiver"
+      MOCK_SERVER_URL: "http://mockserver.mockserver:5000"
+
+      #OL - feature toggle
+      FEATURE_TOGGLE_C2_9286_CXA1_ENROLMENT: "true"
+      FEATURE_TOGGLE_C2_9618_CREATE_VSHOP_CLIENT: "true"
+
+      #mobile
+      APP_CENTER_ANDROID_APP_NAME: "Reference-Android-Dev"
+      APP_CENTER_IOS_APP_NAME: "Reference-IOS-Dev"
+      APP_FLAVOR: "reference"
+      APP_FLAVOR_EXTENSION: ".reference"
+      APP_CODE: "REFERENCE"
+      DEFAULT_CLIENT_NAME: "cxaref-dev"
+      SERVER_HOST: "https://api.cxarefdev.com"
+      ENVIRONMENT_NAME: "development"
+      MAX_CHILD_AGE: "23"
+      MIN_CHILD_AGE: "18"
+      MIN_SPOUSE_AGE: "18"
+      TIPS_PRODUCT_RECOMMENDATION: true
+      TERMINATED_LABEL_FOR_CLINIC: true
+      DISPLAY_APP_NAME: "Reference-Dev"
+      USE_CLAIM_SERVICE: false
+      NO_DEFAULT_ANSWERS: true
+      ENABLE_CLAIMS_FILTER: true
+      USE_BIOMETRICS: false
+      HIDE_CURRENCY: false
+      SCHEME_URL: "benefits.cxarefdev.com"
+      MOBILE_SENTRY_DSN: "https://22f02a1f279945acb51f0b63948f0347@o438056.ingest.sentry.io/5351661"
+      COGNITO_REDIRECT_URL: io.identityserver.cxa://oauth
+      #mobile fastlane
+      FASTLANE_USER: "mobile-build@cxagroup.com"
+      FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "ohnz-bvyp-ckpr-rtkh"
+      FASTLANE_SESSION: "LS0tCi0gIXJ1Ynkvb2JqZWN0OkhUVFA6OkNvb2tpZQogIG5hbWU6IERFUzU1NDZiMDM0NTU0NDVhYWU1NDFlOGNiMDU2NWExNTFhYQogIHZhbHVlOiBIU0FSTVRLTlNSVlhXRmxhUFNSb2hDeHQ4N3ZmNVQ4cDBVSmw5MVhoRTRTcVI4dTRiRWZBVElQbmtEZWJ1cFNVZjZwRXJ6cE1QT09XTytTMzlibFdpdHNMK284NDlyVzg1QTJIeDVTTjdxaDdSM0RFSjNoU1RwTmZVdkk5ZHVPOXplRm9OV0FGaTNsNy9Rdz1TUlZYCiAgZG9tYWluOiBpZG1zYS5hcHBsZS5jb20KICBmb3JfZG9tYWluOiB0cnVlCiAgcGF0aDogIi8iCiAgc2VjdXJlOiB0cnVlCiAgaHR0cG9ubHk6IHRydWUKICBleHBpcmVzOiAKICBtYXhfYWdlOiAyNTkyMDAwCiAgY3JlYXRlZF9hdDogJjEgMjAyMS0wMy0wOCAxMjoxMToxMC4zNTU0MDAwMDAgKzA4OjAwCiAgYWNjZXNzZWRfYXQ6ICoxCi0gIXJ1Ynkvb2JqZWN0OkhUVFA6OkNvb2tpZQogIG5hbWU6IG15YWNpbmZvCiAgdmFsdWU6IERBV1RLTlYyMjAwNzVjOWMzNjA5YzJhYzNkZGUxNDNlYjc0M2I1YzE2NzI5MmVlOTcwYWM1MDBjYTE5MTA3NWY4ODdhZGI3OWQzOTdmYTYzOWVkODQ5MjdmZDJlY2UzNTk1MjBkYWY4ZmEwNTcxODg5NzlkYjkxMjc2OTQ0ZmVhMjMwMTdhMmUyMWM1MGE1ZDIxMDEyZjJkZWUwMWMxNjZlMWYwZDA5ZjBhYWQ3NzdjOGJiMDAwODM2YmQxN2IyMDVkZGU0MjkxOTUwMGU5NmI2OGFjYzgyMDlmNmZhZmU2YjA2MGM4NmU4YzdiYTI0MTEwMzAyNzM0YjZlYTQ0ZDhkNzI1ZjI1OGU0NjljNjc5ODQ4ZDE0YTQ1N2I1ZDNiZGZhZTkyODE5NGUzYzg0NjRmYWE1ODU3MDg2ODRkMDEyMTYzNDBhNmI1YTI1NmEwNmQ4MWM5ZGRjYzYxNzI0MmM5NDA0MWI3YWE0YjEzNTA0OTRmZWU4OWRmNTM0ZGQzMjBkNjlhM2JkODU1NmU1ZmVlNGVkNjk5YmZjNjFkMTA3YjYzMWNmMjQxNWQ1ZWYwYzAxZmExYWY1NzM2OWYyMmEzZDNhZmZhY2NjODQ0NWNhMmM5ZTBkZmEwMWVhNTFmZDAxZGZjNDNkYzJjMTg3OTg4OTI2ZjFiZjExNmFiMzQ0MjFhMmQwNzA2MDQwOWU5MjVlZWZhODU0ZjVjZTYzMjljNWJiMjU1ZGQzN2EzNjQyMDI3NWEyMmMyODExYTM3OTdmNWE2N2ZkZjJhY2RlZTZjNzYxZjA4ZWQ1YjE4M2IzYzhjMTJlZmFjMWZmYjlkNTA2Y2YxMTRlMTliOTVjN2FmYWJlYjJhYTZmNDU0ODRjZDk1NGExMTkzZDkxYmNhMGI4MjE4MmJmMzA3ZmJhZjc4YTg4ODRkMzUzODRlMTQyNTE0YWNmMjgwNzhmODY0NjNiMmQ4ZmUyYjRlM2RmYjlhNTMwZGFjYzM4MjcwOTM3NDE5MWM0MTZmMTUwNzAwOWNiMDkzNjI1NTZlMDYzYzY2MzEyN2I0N2Y5MjQ3ZDFkZTcyOWEzNTRmNTRkMGFkOTNiZjZjZjVjYjhjYmU2NzZlODgzYWIyYzdmODIyMTZiN2VlOGRmZjkwMjFiODFhNTE5YzVhYTA2YmI1M2U0NWZmOGY4NTc5ZmRhMzRlNTQ2ZGM2YWI3YTQ3ZDdjNmViNzlhNjJjZjA4M2YzNmExYjRmZWNkNTIxMTI2NTAyMzA5ODBjZmE5ZjNmMDVmNTE0MzM5YmJmMWJlNDU3YmZiNGJkMDE1ODAwYjg2OTUwMWNhODZkYjk1ZGY5OTczMGJjM2VlMjc3MGUwYjNmNTUxYmYyZjg2ZWJiNDRiNjYyMjEwOTJkYTIzN2ZjYThlNjdhYzg5ODIzNWFlMjQyMzUzNDFkNDBiMjI2NjFmZmU0YzVhZTJjN2ExNzUzMzM1MzQzOTYyMzEzNzMyMzI2NTY0MzkzMTY2NjQzODYzMzQzMjM4NjI2MjYzMzY2NDM2NjIzOTY2MzEzODY1MzM2MzM1NjY2NTM5MzczNk1WUllWMgogIGRvbWFpbjogYXBwbGUuY29tCiAgZm9yX2RvbWFpbjogdHJ1ZQogIHBhdGg6ICIvIgogIHNlY3VyZTogdHJ1ZQogIGh0dHBvbmx5OiB0cnVlCiAgZXhwaXJlczogCiAgbWF4X2FnZTogCiAgY3JlYXRlZF9hdDogMjAyMS0wMy0wOCAxMjoxMToxMC4zNTU1MjIwMDAgKzA4OjAwCiAgYWNjZXNzZWRfYXQ6IDIwMjEtMDMtMDggMTI6MTE6MTAuMzU4MzM3MDAwICswODowMAotICFydWJ5L29iamVjdDpIVFRQOjpDb29raWUKICBuYW1lOiBkcXNpZAogIHZhbHVlOiBleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcFlYUWlPakUyTVRVeE56WTJOekFzSW1wMGFTSTZJbXhCYWxCa1dUTkVNMlJuTW5oaFFtdHZNMVJEVW5jaWZRLlZjMDZpNzRwanNSSHhldmxyb182bEhqRllHeURlWmdhRjJFSkt2WTFNZTAKICBkb21haW46IGFwcHN0b3JlY29ubmVjdC5hcHBsZS5jb20KICBmb3JfZG9tYWluOiBmYWxzZQogIHBhdGg6ICIvIgogIHNlY3VyZTogdHJ1ZQogIGh0dHBvbmx5OiB0cnVlCiAgZXhwaXJlczogCiAgbWF4X2FnZTogMTgwMAogIGNyZWF0ZWRfYXQ6ICYyIDIwMjEtMDMtMDggMTI6MTE6MTEuMDMxNDM2MDAwICswODowMAogIGFjY2Vzc2VkX2F0OiAqMgoK"
+      #Mobile vanilla shop
+      AUTHORIZE_URI: "https://auth.cxarefdev.com/authorize?scope=openid%20ALL%20profile%20profile.ecommerce.read&response_type=code&client_id=5e462a58b2fb4801fd1a7999dc666b4e&redirect_uri=https://benefits.cxarefdev.com&protocol=oauth2&connection=cxaref-dev&audience=cxa-api"
+      AUTHORIZE_LOGIN_URI: "https://auth.cxarefdev.com/login"
+      AUTHORIZE_REDIRECT_URL: "https://benefits.cxarefdev.com"
+      #Mobile vanilla shop
+      #android Release sign
+      APP_KEYSTORE: "cxa2-android-release.keystore"
+      APP_KEYALIAS: "cxa2-android"
+      FACEBOOK_APP_ID: "203321364403632"
+      FACEBOOK_APP_NAME: "CXA-OCBC"
+      #admin-portal
+      AUTH_TOKEN_ROLE_KEY: "http://auth.cxarefdev.com/role"
+      SHOP_SERVICE: "https://choices.cxarefdev.com"
+      ADMIN_CLIENT_ID: "cxaref-dev"
+      ADMIN_THEME_CODE: "core"
+      #admin-service
+      admin_service_AppSettings__DbType: "MariaDb"
+      ADMIN_SERVICE_POLICY_RETRY_ENABLED: "false" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      ADMIN_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      ADMIN_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      ADMIN_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      ADMIN_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      admin_service_AppSettings__InitWallet: "false"
+      admin_service_AppSettings__InitEWallet: "true"
+      SERVICEBUS_CONNECTION_SENDER_CENSUS_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-census-job-queue.fifo"
+      SERVICEBUS_CONNECTION_SENDER_BENEFIT_INIT_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-benefit-init-job-queue.fifo"
+      SERVICEBUS_CONNECTION_SENDER_USER_INIT_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-users-init-job-queue.fifo"
+      SERVICEBUS_CONNECTION_SENDER_NOTIFICATION_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-notification-job-queue.fifo"
+      SERVICEBUS_CONNECTION_SENDER_WALLET_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-wallet-job-queue.fifo"
+      SERVICEBUS_CONNECTION_SENDER_EWALLET_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-ewallet-job-queue.fifo"
+      SERVICEBUS_CONNECTION_LISTENER_EWALLET_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-ewallet-job-queue.fifo"
+      #auth-service
+      auth0__connectionForAdmin: "cxaref-dev"
+      auth0__issuer: "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ezs0Wfbg4"
+      auth0__tenantUrl: ""
+      auth0__protocol: "https://"
+      auth0__audience: "cxaref-dev"
+      auth0__connection: "cxaref-dev"
+      auth0__connectionId: "cxaref-dev"
+      auth0__authApiVersion: "v1"
+      auth0__authIdentityProvider: ""
+      auth0__providerPrefix: ""
+      auth0__authProviderName: "Identity"
+      auth0__scopeForRopg: "openid ALL profile"
+      auth0__isIdentityService: "true"
+      auth0__grantType: "password"
+      auth0__refreshTokenGrantType: "refresh_token"
+      auth0__discoveryUrl: "/cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ezs0Wfbg4/.well-known/openid-configuration"
+      auth0__CustomAuthorizationToken__issuer: "https://auth.cxarefdev.com/"
+      auth0__CustomAuthorizationToken__audience: "https://auth.cxarefdev.com/"
+      auth0__CustomAuthorizationToken__expiryMins: "10080"
+      EmployeeFrontend__Url: "https://benefits.cxarefdev.com/"
+      AdminPortal__Url: "https://benefits-admin.cxarefdev.com/"
+      auth_service_appSettings__DbType: "MariaDb"
+      ADMIN_SERVICE_OBJECT_CONTAINER_NAME: "cxaref-dev-admin-service"
+      AppSettings__CsEmail: "emailtest@cxag.com"
+      FeaturesToggling__ShouldResetPasswordValidateDOB: "true"
+      FeaturesToggling__ShouldResetPasswordValidateDOBLockAccount: "false"
+      AppSettings__CsTel: "093232323"
+      ProductName: "HealthPass"
+      AUTHSERVICE_HAS_SECONDARY_IDENTITYSERVER: "false"
+      AUTHSERVICE_SECONDARY_IDENTITYSERVER_ISSUER: ""
+      AUTHSERVICE_SECONDARY_IDENTITYSERVER_REQUIREHTTPS: "false"
+      AUTHSERVICE_SECONDARY_IDENTITYSERVER_WELLKNOWNURI: ""
+      AUTH_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      AUTH_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      AUTH_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      AUTH_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      AUTH_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+
+      #auth-cognito-service
+      AUTH_COGNITO_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      AUTH_COGNITO_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      AUTH_COGNITO_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      AUTH_COGNITO_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      AUTH_COGNITO_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      AUTH_COGNITO_USER_POOL: "ap-southeast-1_ezs0Wfbg4" # user-pool to create/ add user account in Amazon Cognito.
+      AUTH_COGNITO_REGION: "ap-southeast-1" # region to create/ add user account in Amazon Cognito.
+      AUTH_COGNITO_ROLE_ARN: "arn:aws:iam::285584781843:role/cxaref-dev-cognito-assume-role" # role-arn to register role in Amazon Cognito.
+      AUTH_COGNITO_CREDS_MAX_SESSION_DURATION_SECONDS: "14400" # The session duration time for cognito assume role
+      AUTH_COGNITO_LINK_USER_DESTINATION_PROVIDER_NAME: "Cognito" # We should be set to Cognito for users in Cognito user pools.
+      AUTH_COGNITO_LINK_USER_SOURCE_PROVIDER_ATTRIBUTE_NAME: "Cognito_Subject" # We should be set to Cognito_Subject
+      AUTH_COGNITO_LINK_USER_SOURCE_PROVIDER_NAME: "cxaref-dev" # The provider name from external identity provider
+
+      #employee-frontend-cognito
+      AWS_COGNITO_IDENTITY_PROVIDER: "cxaref-dev"
+      AWS_COGNITO_CLIENT_ID: "i1o7148ns6ra3kskfgg0jjgv3"
+      AWS_COGNITO_EXCHANGE_TOKEN_URL: "https://cxarefdev.auth.ap-southeast-1.amazoncognito.com/oauth2/token"
+      AWS_COGNITO_AUTH_URL: "https://cxarefdev.auth.ap-southeast-1.amazoncognito.com/oauth2/authorize"
+      AWS_COGNITO_LOGOUT_URL: "https://cxarefdev.auth.ap-southeast-1.amazoncognito.com/logout"
+      USE_COGNITO_FEDERATED: "false"
+      AWS_COGNITO_AUTH_SCOPE: "cxa/All cxa/profile.ecommerce.read cxa/profile.write openid"
+      AWS_COGNITO_MANAGE_ADMIN_USERS: "39ka17bui8lf2b417p5cjdpism"
+
+      # Requires if we enable cognito
+      AUTH_SERVICE_VERIFY_TOKEN_URL: "http://distribution-auth-cognito-service.prod:5000/api/v1/OAuth/token/verify"
+
+      #admin-portal-cognito
+      CS_AWS_COGNITO_CLIENT_ID: "mv4614gkunlqfeiv3ciqj61pg"
+      CS_AUTH0_REDIRECT_URL: "https://benefits-admin.cxarefdev.com"
+
+      #auth-listener
+      SERVICEBUS_CONNECTION_LISTENER_USER_INIT_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-users-init-job-queue.fifo"
+
+      #benefit-service
+      benefit_service_AppSettings__DbType: "MariaDb"
+      BENEFIT_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      BENEFIT_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      BENEFIT_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      BENEFIT_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      BENEFIT_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      Insurer__MyBenefitsName: '[{\"Locale\":\"en-HK\",\"DisplayName\":\"CXA Life (International) Limited\"},{\"Locale\":\"zh-HK\",\"DisplayName\":\"滙豐人壽保險（國際）有限公司\"}, {\"Locale\":\"en-UK\",\"DisplayName\":\"CXA Life (International) Limited\"},{\"Locale\":\"th-TH\",\"DisplayName\":\"滙豐人壽保險（國際）有限公司\"}]'
+      INTEGRATION_BENEFIT_SERVICE: "http://gateway.openfaas.svc.cluster.local:8080/function/benefit-handle-benefits-simplified/"
+      EXTERNAL_BENEFIT_GET_STATEMENTS_URL: ""
+      EXTERNAL_BENEFIT_GET_STATEMENTS_HEADERS: ""
+      EXTERNAL_BENEFIT_GET_STATEMENTS_AUTH_CLIENT_ID: ""
+      ClientConfig__Labels__en_HK: '{1:\"Panel doctor\",2:\"Non-panel doctor\",3:\"coverage\",4:\"co-payment\",5:\"out of\",6:\"left\",7:\"Max\",8:\"limit\",9:\"visits\",11:\"Limit per year\",12:\"Annual limit\",13:\"Sublimit\",14:\"Benefit\",15:\"Description\",16:\"Sum assured\",17:\"days\",18:\"visits\",19:\"percentage\",20:\"Limit\",21:\"Remaining\",22:\"Max days\",23:\"Max visits\",24:\"Max percentage\",25:\"Remaining\"}'
+      ClientConfig__Labels__zh_HK: '{1: \"網絡醫生\",2: \"非網絡醫生\",3: \"覆蓋率\",4: \"共同支付\",5: \"中\",6: \"剩餘\",7: \"最大\",8: \"限額\",9: \"訪問\",10: \"無限\",11: \"每年限額\",12: \"年度限額\",13: \"次限\",14: \"福利\",15: \"說明\",16: \"保證金額\",17:\"天\",18:\"次\",19:\"百分比%\",20:\"最高\",21:\"剩餘\",22:\"最高日數\",23:\"最高瀏覽次數\",24:\"最大百分比\",25:\"餘額\"}'
+      ExternalService__ClaimIntegrationService__GetBenefitVisit: "false"
+      BENEFIT_SERVICE_Insurer__Code: "2251"
+      BENEFIT_SERVICE_Insurer__CardType: "CXA"
+      BENEFIT_SERVICE_Insurer__Name: "CXA Life Benefits Plus"
+      BENEFIT_SERVICE_Insurer__Product__PolicyNumber: "10288801GH"
+      BENEFIT_SERVICE_Insurer__EHealthCardName: "AXA General Insurance Hong Kong Limited"
+      BENEFIT_SERVICE_Insurer__Product__ExpiryDate: "2020-12-31"
+      BENEFIT_SERVICE_Insurer__Product__InitialDate: "2020-01-01"
+      BENEFIT_SERVICE_Insurer__OtherCardType: "AXACR"
+
+      #Benefit-listener
+      SERVICEBUS_CONNECTION_LISTENER_BENEFIT_INIT_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-benefit-init-job-queue.fifo"
+
+      #benefit-job
+      SftpConfiguration__UserName: "services"
+      TRS_AddressesToReceiveReport: "cxa.trsreport@mailinator.com;patrick.m@cxagroup.com"
+
+      #claim-service
+      SERVICEBUS_CONNECTION_LISTENER_CLAIM_SUBMISSION_TPA_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-claim-submission-tpa-queue.fifo"
+      claim_service_AppSettings__DbType: "MariaDb"
+      ActiveServices__ClaimFeed: "false"
+      ActiveServices__ClaimProcessing: "false"
+      ActiveServices__ClaimResubmission: "false"
+      ActiveServices__ClaimJobSubmit: "true"
+      CLAIM_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      CLAIM_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      CLAIM_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      CLAIM_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      CLAIM_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      #claim-job
+      SERVICEBUS_CONNECTION_SENDER_CLAIM_SUBMISSION_TPA_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-claim-submission-tpa-queue.fifo"
+
+      #content-service
+      content_service_AppSettings__DbType: "MariaDb"
+
+      #ETPA JOB
+      ETPAJOB_SUPPORTED_LOCALES: "en-UK,zh-HK"
+      ETPAJOB_SUPPORTED_INTEGRATION_TYPES: "API"
+      ETPAJOB_DATASOURCE_TYPE: "JSON"
+      ETPAJOB_CLINIC_PROVIDERS: "healsapi,healssgapi"
+      ETPAJOB_ENABLE_PANELS_IMPORT: "false"
+
+      HEALS_SG_CLIENT_ID: "62jsubfei71o94h1s7chqvdut6"
+      HEALS_HK_CLIENT_ID: "38usmd50srbab5cb6guk4sf22r"
+
+      #employee-frontend
+      CLIENT_ID: "cxaref-dev"
+
+      AUTH0_AUTHORIZE_URL: "https://auth.cxarefdev.com/authorize?scope=openid%20ALL%20profile%20profile.ecommerce.read&response_type=code&client_id=5e462a58b2fb4801fd1a7999dc666b4e&redirect_uri=https://benefits.cxarefdev.com&protocol=oauth2&connection={connection}&audience=cxa-api"
+      AUTH0_LOGOUT_URL: "https://auth.cxarefdev.com/session/end?post_logout_redirect_uri={post_logout_redirect_uri}&id_token_hint={id_token_hint}"
+      AUTH0_REDIRECT_URL: "https://benefits.cxarefdev.com"
+      AUTH0_CONNECTION: "cxaref-dev"
+      AUTH0_AUDIENCE: "cxa-api"
+      AUTH0_OAUTH_TOKEN_URL: "https://auth.cxarefdev.com/oauth/token"
+      SHOP_URL: "https://shopweb.cxarefdev.com"
+      SHOP_WEB_URL: "https://shopweb.cxarefdev.com"
+      FEATURE_TOGGLE_LIFESTYLE: "true"
+      FEATURE_TOGGLE_LIFESTYLE_SUGGESTIONS: "true"
+      FEATURE_TOGGLE_CLUSTRED_MAP: "true"
+      ENABLE_FEATURE_TOGGLE: "false"
+      FEATURE_TOGGLE_KEY: "feature_toggle"
+      IOS_APP_ID: "LW97L5BGRN.com.cxagroup.mobile.EmployeePortal.development.cxa"
+      IOS_APP_PATHS: "/verify"
+      ANDROID_PACKAGE_NAME: "com.employeefrontend.development.reference"
+      ANDROID_SHA256_CERT_FINGERPRINTS: "63:34:6B:82:CB:DF:E4:5A:19:73:86:77:55:EF:8D:A9:23:FF:B2:CF:EA:53:2F:61:C3:71:07:AE:B4:FD:5B:2C"
+      APP_STORE_LINK: "https://appcenter.ms/users/palawan-appcenter/apps/Hybrid-IOS-Dev"
+      PLAY_STORE_LINK: "https://appcenter.ms/users/palawan-appcenter/apps/Hybrid-Android-Dev"
+      TIMEZONE: "Asia/Singapore"
+      ENABLE_SENTRY_PAYMENT: "true"
+      USE_CURRENCY_SYMBOL: "true"
+      LOG_LEVEL: "info"
+      USE_PRODUCT_NAME_FROM_CMS: "true"
+      USE_LIFESTYLE_TIP_FROM_CMS: "true"
+      THEME_CODE: "core"
+      SUPPORTED_LANGUAGES: "en-HK,th-TH"
+
+      #ewallet-listener
+      INIT_ACCOUNT_ENDPOINT: "https://api.cxarefdev.com/ewallet/api/internal/v1/account"
+      #ETPA-SERVICE
+      ETPA_SERVICE_DEFAULT_LANGUAGE: "en-UK"
+      ETPA_SERVICE_POLICY_RETRY_ENABLED: "false" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      ETPA_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      ETPA_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      ETPA_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "false" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      ETPA_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      ETPA_PROVIDER_AUTH_ENDPOINT: "https://login.microsoftonline.com/5918496d-55ca-4316-a336-9bab094bef38/oauth2/v2.0/token"
+      ETPA_PROVIDER_AUTH_CLIENTID: "e72fa187-72e3-4f6c-8fcc-d32ee18f040f"
+      ETPA_PROVIDER_AUTH_SCOPE: "api://889ad568-65fc-4ae4-a00f-a5679bf284e1/.default"
+      ETPA_PROVIDER_AUTH_GRANT_TYPE: "client_credentials"
+      ETPA_PROVIDER_SERVICE_URL: "https://heals-nonprod.azure-api.net/cxa/"
+      ETPA_PROVIDER_SERVICE_LANGUAGE_MAPPING: "en-UK=en,zh-HK=zh_HANT"
+      ETPA_CLINIC_FLOW_PROVIDER_AUTH_ENDPOINT: "http://52.229.154.217:8080/AuthenticationService/oauth2/token"
+      ETPA_CLINIC_FLOW_PROVIDER_AUTH_CLIENTID: "f5fcf77c96ba4c0ca2b44e8c4e1ce85d"
+      ETPA_CLINIC_FLOW_PROVIDER_AUTH_GRANT_TYPE: "password"
+      ETPA_CLINIC_FLOW_PROVIDER_SERVICE_URL: "http://52.229.154.217:8080/CXA/api/"
+      ETPA_CLINIC_FLOW_PROVIDER_SERVICE_COUNTRY_CODE: "SG"
+      ETPA_CLINIC_FLOW_PROVIDER_SERVICE_LANGUAGE_MAPPING: "en-UK=en,zh-HK=zh_HANT"
+      ETPA_SUPPORTED_CLINIC_TEXT_SEARCHES: "clinic_name,clinic_location,clinic_area"
+      ETPA_FEATURE_TOGGLE_C2_7560_EnablePaymentRequestFromClinicProvider: "true"
+      FEATURE_TOGGLE_C2_10126_EnableMedicalProfile: "true"
+      FEATURE_TOGGLE_C2_10126_ValidateDependentId: "false"
+      Panels__LocaleInHeader: "true"
+      Panels__ChecksumValidationRequired: "true"
+      Panels__ConsultationTimingsRequired: "false"
+      Panels__GeocodingEnabled: "false"
+      Panels__SpecialtyRequired: "true"
+      Panels__ConsultationTypeRequired: "false"
+      #identity-service
+      IDENTITY_NODE_ENV: "development"
+      IDENTITY_DEBUG: "oidc-provider:*error*"
+      IDENTITY_LOGGER_LEVEL: "debug"
+      IDENTITY_ENABLE_LOG: 1
+      IDENTITY_DB_NAMES: "auth_config:identity-config cxaref-dev:identity-service-user-shared admin:identity-service-admin"
+      IDENTITY_SHARED_DB_NAME: "identity-service-user-shared"
+      IDENTITY_AUTH_CONFIG_DB_NAME: "identity-config"
+      IDENTITY_DB_ADDRESS: "mariadb:3306"
+      IDENTITY_DB_USERNAME: "auth"
+      IDENTITY_CS_LOGINID: "admin@cxarefdev.com"
+      IDENTITY_ISSUER: "https://auth.cxarefdev.com/"
+      IDENTITY_USER_IMPORT_LIMIT: 5000
+      IDENTITY_COOKIE_DOMAIN: "cxarefdev.com"
+      IDENTITY_MIN_CHARS_PASSWORD: 8
+      IDENTITY_MAX_CHARS_PASSWORD: 50
+      IDENTITY_COOKIE_LONG_MAX_AGE: "30d"
+      IDENTITY_COOKIE_SHORT_MAX_AGE: "30d"
+      IDENTITY_ACCESS_TOKEN_TTL: "1h"
+      IDENTITY_ACCESS_TOKEN_ROPG_TTL: "30d"
+      IDENTITY_AUTHORIZATION_CODE_TTL: "10m"
+      IDENTITY_ID_TOKEN_TTL: "1h"
+      IDENTITY_DEVICE_CODE_TTL: "10m"
+      IDENTITY_REFRESH_TOKEN_TTL: "1d"
+      IDENTITY_REFRESH_TOKEN_TTL_ROPG: "1d"
+      IDENTITY_CACHE_ACCOUNT_TTL: "60d"
+      IDENTITY_MAX_LOGIN_ATTEMPT: "5"
+      IDENTITY_USER_NOTIFICATION_QUEUE: "users-notification-queue"
+      IDENTITY_CS_EMAIL: "careteam@hidoc.sg"
+      IDENTITY_THEME: "ocbc"
+      IDENTITY_DEFAULT_REDIRECT_URL: "https://benefits.cxarefdev.com"
+      IDENTITY_ENABLE_REFRESH_TOKEN_ROTATION: "false"
+      FEATURE_TOGGLE_C2_5798_ENABLE_REFRESH_TOKEN: "false"
+      #member-listener
+      member_listener_FeatureToggle__1348: "true"
+      FeatureToggle__CDP_1348_PerformCensusFileChecksum: "true"
+      member_listener_appSettings__DbType: "MariaDb"
+      ClientMappingSettings__ClientSettingsJsonString: '[{\"ClientId\":\"\",\"Currency\":\"SGD\",\"OTPVerificationEnabled\":\"false\",\"SendVerificationEmail\":\"false\"},{\"ClientId\":\"admedika\",\"Currency\":\"Rp\",\"OTPVerificationEnabled\":\"false\",\"SendVerificationEmail\":\"true\"},{\"ClientId\":\"cxaref-dev\",\"Currency\":\"HKD\",\"OTPVerificationEnabled\":\"true\",\"SendVerificationEmail\":\"false\"},{\"ClientId\":\"ocbcb2c\",\"Currency\":\"HKD\",\"OTPVerificationEnabled\":\"true\",\"SendVerificationEmail\":\"false\"},{\"ClientId\":\"cxa2oncxa1\",\"Currency\":\"HKD\",\"OTPVerificationEnabled\":\"false\",\"SendVerificationEmail\":\"true\"}]'
+      SERVICEBUS_CONNECTION_LISTENER_CENSUS_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-census-job-queue.fifo"
+      AppSettings__TerminatedUserLimitedAccessInDays: "0"
+      member_listener_DbQueryChunkSize: "1000"
+      member_listener_DbSaveBatchSize: "1000"
+
+      #member-service
+      member_service_appSettings__DbType: "MariaDb"
+      MEMBER_SERVICE_POLICY_RETRY_ENABLED: "false" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      MEMBER_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      MEMBER_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      MEMBER_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      MEMBER_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      member_service_selfRegistration_allowedClients: "cxaref-dev,ocbcb2c,retail-cxaref-dev"
+      member_service_ClientsConfig_B2CClientsWhoAllowUsersUpdatingTheirProfile: "cxaref-dev,ocbcb2c"
+      member_service_Locale__Supported: "en-UK,en-SG,en-HK,id-ID,th-TH"
+      SelfRegistration__LinkExpiryInHours: "12"
+      SelfRegistration__OTPExpiryInSeconds: "600"
+      SelfRegistration__NextOTPRequestAllowedInSeconds: "30"
+      SelfRegistration__OTPEmailTemplateId: "ActiveAccountOtpVerification"
+      SelfRegistration__FailedOTPVerificationThreshold: "5"
+      SelfRegistration__DurationOfOTPRequestLockInMinutes: "15"
+      ChangePersonalEmail__LinkExpiryInHours: "12"
+      member_service__ChangeContactNumber__OTPExpiryInSeconds: "60"
+      member_service__ChangeContactNumber__NextOTPRequestAllowedInSeconds: "30"
+      member_service__ChangeContactNumber__FailedOTPVerificationThresholdPerContactNumber: "5"
+      member_service__ChangeContactNumber__DurationOfOTPRequestLockInMinutes: "60"
+      member_service__FirstLoginVerification__OTPExpiryInSeconds: "300"
+      member_service__FirstLoginVerification__NextOTPRequestAllowedInSeconds: "30"
+      member_service__FirstLoginVerification__FailedOTPVerificationThresholdPerMember: "5"
+      member_service__FirstLoginVerification__DurationOfOTPRequestLockInMinutes: "60"
+      member_service__SegregationConfigs__SchemaMappings: ""
+
+      #notification-service
+      MANDRILL_APP_USER: "justin@cxagroup.com"
+      SftpConfiguration__Host: "sftp.prod"
+      SftpConfiguration__Port: "2222"
+      notification_service_appSettings__DbType: "MariaDb"
+      #notification-listener
+      Notifcation_Service_FromEmail: "test@cxagroup.com"
+      Notifcation_Service_ProductName: "Team CXA"
+      SERVICEBUS_CONNECTION_LISTENER_NOTIFICATION_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-notification-job-queue.fifo"
+
+      #payment-job
+      SFTP_HOST: "sftp.prod"
+      #claim-job
+      ClaimJob_ClaimImportSettings_ClientId: "admedika"
+      ClaimJob_ClaimImportSettings_InputPath: "/uploads/claim/in"
+      ClaimJob_ClaimImportSettings_ErrorOutputPath: "/uploads/claim/out/error"
+      ClaimJob_ClaimImportSettings_ArchivePath: "/uploads/claim/in/archive"
+      #member-job
+      DataSettings__MemberProcessing: "false"
+      DataSettings__MemberCensusImport: "true"
+      DataSettings__MemberCensusImportXlsFiles: "true"
+      DataSettings__MemberCensusArchiveXlsFiles: "true"
+      DataSettings__MemberCensusArchiveCsvFiles: "true"
+      DataSettings__ShouldZipErrorFile: "false"
+      DataSettings__SendWelcomeEmailAfterCensusImport: "true"
+      MemberJob_Sftp__Host: "sftp.prod"
+      MemberJob_Sftp__Port: "2222"
+      MemberJob_Sftp__UserName: "member-job"
+      SftpSettings__InputPath: "cxaref-dev/census/in/newfiles"
+      SftpSettings__ArchivePath: "cxaref-dev/census/in/archive"
+      SftpSettings__OutputPath: "cxaref-dev/census/out"
+      SftpSettings__ErrorPath: "cxaref-dev/census/out/error"
+      SftpSettings__TempEmployeeFile: "employee_{timestamp}.csv"
+      SftpSettings__TempDependentFile: "dependent_{timestamp}.csv"
+      ExternalService__ClientId: "cxaref-dev"
+      member_job__CensusNotificationEmail: "patrick.m@cxagroup.com"
+      ExportMapping__Employee__ColumnsJsonString: '[{\"Source\":\"Employee Insurer Identifier\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Employee Policy Number\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Employee Certificate Number\",\"Target\":\"insurance_no\",\"Default\":\"NA\"},{\"Source\":\"Employee Dependent Number\",\"Target\":\"dependent_number\",\"Default\":\"1\"},{\"Source\":\"Employee Membership Number\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Employee ID No.\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Last Name\",\"Target\":\"member_name\",\"Default\":\"\"},{\"Source\":\"First Name\",\"Target\":\"member_name\",\"Default\":\"\"},{\"Source\":\"ID Type\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Identification Number\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Gender\",\"Target\":\"sex\",\"Default\":\"\"},{\"Source\":\"Nationality\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Type of Employment Pass\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Country of Work\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Date of Birth\",\"Target\":\"birth_date\",\"Default\":\"\"},{\"Source\":\"Marital Status\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Scheme Begin Date\",\"Target\":\"date_join\",\"Default\":\"\"},{\"Source\":\"Date of Hire\",\"Target\":\"date_join\",\"Default\":\"\"},{\"Source\":\"Category\",\"Target\":\"\",\"Default\":\"Tier 1\"},{\"Source\":\"Designation\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Type of Employment\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Company Code\",\"Target\":\"\",\"Default\":\"0\"},{\"Source\":\"Salary\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Currency\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Bank Code\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Branch Code\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Bank Account No.\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Email Address\",\"Target\":\"email\",\"Default\":\"\"},{\"Source\":\"Personal Email Address\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Last Day of Service\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Home Address 1\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Home Address 2\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Home Address 3\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Home Address 4\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Mobile Phone Number\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Effective Date\",\"Target\":\"date_join\",\"Default\":\"\"}]'
+      ExportMapping__Dependent__ColumnsJsonString: '[{\"Source\":\"Dependent Insurer Identifier\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Dependent Policy Number\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Dependent Certificate Number\",\"Target\":\"\",\"Default\":\"NA\"},{\"Source\":\"Dependent Dependent Number\",\"Target\":\"dependent_number\",\"Default\":\"\"},{\"Source\":\"Dependent Membership Number\",\"Target\":\"insurance_no\",\"Default\":\"\"},{\"Source\":\"Employee Insurer Identifier\",\"Target\":\"parent_id\",\"Default\":\"\"},{\"Source\":\"Dependent Last Name\",\"Target\":\"member_name\",\"Default\":\"\"},{\"Source\":\"Dependent First Name\",\"Target\":\"member_name\",\"Default\":\"\"},{\"Source\":\"Relationship\",\"Target\":\"fam_status\",\"Default\":\"\"},{\"Source\":\"Dependent Gender\",\"Target\":\"sex\",\"Default\":\"\"},{\"Source\":\"Dependent Identification Type\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Dependent Identification Number\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Dependent Nationality\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Dependent Country of Residence\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Dependent Date of Birth\",\"Target\":\"birth_date\",\"Default\":\"\"},{\"Source\":\"Dependent Email Address\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Scheme Begin Date\",\"Target\":\"date_join\",\"Default\":\"\"},{\"Source\":\"Dependent Termination Date\",\"Target\":\"\",\"Default\":\"\"},{\"Source\":\"Effective Date\",\"Target\":\"date_join\",\"Default\":\"\"}]'
+      #payment-service
+      ENABLE_DB_CREATION: "true"
+      GATEWAY_CONNECTION_TIMEOUT: 30000
+      MPGS_MERCHANT_ID: "TEST97485401"
+      MPGS_USERNAME: "merchant.TEST97485401"
+      MPGS_V53_BASE_URL: "https://ap-gateway.mastercard.com/api/rest/version/53/merchant/TEST97485401"
+      MPGS_V53_SESSION_URL: "https://ap-gateway.mastercard.com/form/version/53/merchant/TEST97485401/session.js"
+      MPGS_V53_PKI_BASE_URL: "https://pki.ap.gateway.mastercard.com/api/rest/version/53/merchant/TEST97485401"
+      MPGS_OCBC_IDR_MERCHANT_ID: "TEST36070213071"
+      MPGS_OCBC_IDR_USERNAME: "merchant.TEST36070213071"
+      MPGS_OCBC_IDR_V53_BASE_URL: "https://ap-gateway.mastercard.com/api/rest/version/53/merchant/TEST36070213071"
+      MPGS_OCBC_IDR_V53_SESSION_URL: "https://ap-gateway.mastercard.com/form/version/53/merchant/TEST36070213071/session.js"
+      MPGS_OCBC_IDR_V53_PKI_BASE_URL: "https://pki.ap.gateway.mastercard.com/api/rest/version/53/merchant/TEST36070213071"
+      MPGS_KBANK_THB_MERCHANT_ID: "BENIX3DS"
+      MPGS_KBANK_THB_USERNAME: "merchant.BENIX3DS"
+      MPGS_KBANK_THB_V53_BASE_URL: "https://test-gateway.mastercard.com/api/rest/version/53/merchant/BENIX3DS"
+      MPGS_KBANK_THB_V53_SESSION_URL: "https://test-gateway.mastercard.com/api/rest/version/53/merchant/BENIX3DS/session.js"
+      MPGS_KBANK_THB_V53_PKI_BASE_URL: "https://pki.test-gateway.mastercard.com/api/rest/version/53/merchant/BENIX3DS"
+      MPGS_OCBCSHAREPL_SGD_MERCHANT_ID: "TEST97485402"
+      MPGS_OCBCSHAREPL_SGD_USERNAME: "merchant.TEST97485402"
+      MPGS_OCBCSHAREPL_SGD_V53_BASE_URL: "https://ap-gateway.mastercard.com/api/rest/version/53/merchant/TEST97485402"
+      MPGS_OCBCSHAREPL_SGD_V53_SESSION_URL: "https://ap-gateway.mastercard.com/form/version/53/merchant/TEST97485402/session.js"
+      MPGS_OCBCSHAREPL_SGD_V53_PKI_BASE_URL: "https://pki.ap.gateway.mastercard.com/api/rest/version/53/merchant/TEST97485402"
+      PAYMENT_MPGS_BOC_HKD_MERCHANT_ID: "TEST010826278"
+      PAYMENT_MPGS_BOC_HKD_USERNAME: "merchant.TEST010826278"
+      PAYMENT_MPGS_BOC_HKD_V53_BASE_URL: "https://ap-gateway.mastercard.com/api/rest/version/53/merchant/TEST010826278"
+      PAYMENT_MPGS_BOC_HKD_V53_SESSION_URL: "https://ap-gateway.mastercard.com/form/version/53/merchant/TEST010826278/session.js"
+      PAYMENT_MPGS_BOC_HKD_V53_V53_PKI_BASE_URL: "https://pki.ap.gateway.mastercard.com/api/rest/version/53/merchant/TEST010826278"
+      PAYMENT_SERVICE_MIGRATION_FOLDER: "cxaref-dev"
+      PAYMENT_SERVICE_LOG_LEVEL: "debug"
+      #payment-service-feature-toggle
+      FEATURE_TOGGLE_C2_4809_PAYMENT_DEFAULT_CONFIG: "true"
+      FEATURE_TOGGLE_C2_7947_PAYMENT_ALLOW_MOCK_PAYMENT_METHOD: "true"
+      #wallet-service
+      wallet_service_AppSettings__DbType: "MariaDb"
+      WALLET_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      WALLET_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      WALLET_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      WALLET_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      WALLET_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      CLIENT_ID_WITH_WALLET_SERVICE: ""
+      E_WALLET_SERVICE: "http://gateway.openfaas.svc.cluster.local:8080/function/ewallet-get-balance/"
+
+      #wellness-service
+      CMF_BASE_URI: "https://cxa.changemyface.com/api/2/"
+      CMF_VERSION: "2"
+      CMF_AGES: "35,45,55,65,75"
+      wellness_service_appSettings__DbType: "MariaDb"
+      WELLNESS_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      WELLNESS_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      WELLNESS_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      WELLNESS_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      WELLNESS_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      WELLNESS_SERVICE_STORAGE_BUCKET: "cxaref-dev-wellness-service"
+      SERVICEBUS_CONNECTION_SENDER_FACE_AGING_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-face-aging.fifo"
+      #Wellness-listener
+      SERVICEBUS_CONNECTION_LISTENER_FACE_AGING_QUEUE: "https://sqs.ap-southeast-1.amazonaws.com/285584781843/cxaref-dev-face-aging.fifo"
+
+      PUBLIC_ACCESS_ENABLED: "false" #used in NSG rules for Azure (not relevant for AWS)
+      CXA_ENVIRONMENT: "" #used for CXA1 setup, not relevant for AWS
+      INTERNAL_DOMAIN_NAME: "cxaref-dev.internal"
+      DOMAIN_NAME: "cxarefdev.com"
+      GITHUB_USERNAME: "cxa-ci-user"
+      RESOURCE_NAME: "cxaref-dev"
+      KUBECONFIG: "/var/go/.kube/config-cxaref-dev"
+      SENTRY_ENV: "cxaref-dev"
+      SENTRY_ORG: "cxa-group-2-0"
+      SENTRY_PROJECT: "distribution-employee-frontend"
+      CLOUD_PROVIDER: "aws"
+      MESSAGE_QUEUE_PROVIDER: "SQS"
+      KUBERNETES_TYPE: "eks"
+      NATS_MEMBERJOB_QUEUE: "nats://nss-client.messaging:4222"
+      NATS_BACKENDJOB_QUEUE: "nats://nss-client.messaging:4222"
+      NATS_BENEFITJOB_QUEUE: "nats://nss-client.messaging:4222"
+      NATS_AUTHJOB_QUEUE: "nats://nss-client.messaging:4222"
+      NATS_NOTIFICATIONJOB_QUEUE: "nats://nss-client.messaging:4222"
+      KUBECONFIG_CLUSTER_NAME: "cxaref-dev-cluster"
+      KUBECONFIG_CLUSTER_CA_CERT: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJd01UQXdOVEE1TlRFeE0xb1hEVE13TVRBd016QTVOVEV4TTFvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTkZNCllhV1RJSEZidVIybmNpZ0wyRFBoTkU4ODRNSkd2a0pGdmpwZUdaclpkTjZuOEkxblZKMmJLVDcxd0gyM0NTcFQKbndpRnlmTHByYWdvakx3WGNoaE9iZWxRN1h6Q0Yxc2pGSHNJLzdQQ1o2Yk5DdSs5YnJlTUcreWtiSWpFNlVTZQo0ZzlkeGthVXVJZ0VGQzJnRGFiQ1BPTlFXdHI3bTk2UW95VCs4djJGeDg0cVNxMkE1Z1pYcDNMb0RtWmo1VUtwCjIvVGt0clk2WEZiSkE4dkR2aVZwRnV4V3Y0RlBGV3hGUGpYUFJDQ1BVb1Y3TjgvbUNTRW5NTFk3VXg2WGNBYzQKSlBuS2pXN3JqSzBpTUMvUXlYVDFCaGhrWmtjVzRNYnM1MUZLSlByMW1BQ2lWN3hPM1NYeXNYOFAxN0c3Z3hJbwpuTGlydXFYTDdSNnBXeWNHZmcwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFNTTIyWU55cEdwRkNoV3BkRjJVbnNxTWNKOW8KOXE5VmpDQjNUWVV4SS83NG00dVJKNXlycmlYb1FJZjNHeW9SNm9DU3dKbzVSVEM0dTY0MlpkdHVuYjhVazd0Mgo3L01BeE9xT1EydTE2Q1FoNUZkUnJ0R2p6cFJVeXFIR0lENGRUcTlUbGRQTzkvTFV1cXdpSm50VkpzQnVzV25nCkpXSC9pMUpqaENVK0xKQjR1bFdid0ZFOEZIZ1BqTUo0dzR2QlRvUWNJT3M0MURlRGRoZitOKzY1T0tTZElHVzMKY0V6UG02QXhkVzBmWXA4QTNXZm1mYlBOb1NQclpRdFYyZ092QkxKQ0N4dVdJMFowbmx2R09VbCtmTlgrcDVnawozMGFxV1ZwY3JuaFdqc0lLc1o2SDRla25RTUxNWlBJRjMwRythRFVhMnFmdUdlaXB0TTFFWm9PVzhFND0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+      KUBECONFIG_CLUSTER_SERVER: "https://59656537354DC3F97E7DDB1B803F8E7A.gr7.ap-southeast-1.eks.amazonaws.com"
+      KUBECONFIG_USER_NAME: "eks-ci-user"
+      KUBECONFIG_CONTEXT_NAME: "cxaref-dev"
+      REPO_USERNAME: "ci-user"
+      SHOP_ADMIN_EMAIL: "shop@cxagroup.com"
+      SHOP_ADMIN_USERNAME: "admin"
+      SHOP_AUTHORIZE_LOGIN_URI: "https://auth.cxarefdev.com/login"
+      SHOP_AUTHORIZE_URI: "https://auth.cxarefdev.com/authorize?scope=openid+profile+profile.ecommerce.read&response_type=code&client_id=17e25619d0579e801faf50a9ed823954&redirect_uri=https://choices.cxarefdev.com/sso/silent?connection=cxaref-dev&langid=enus&protocol=oauth2&connection=cxaref-dev&prompt=login&audience=cxa-api"
+      SHOP_BACKEND_FRONTNAME: "admin"
+      SHOP_CONTENT_LANGUAGES: en_US
+      SHOP_CURRENCY: SGD
+      SHOP_HOST: "https://choices.cxarefdev.com"
+      SHOP_VANILLA_HOST: "https://shop.cxarefdev.com"
+      SHOP_MYSQL_HOSTNAME: "100.68.62.43"
+      SHOP_LANGUAGE: "en_US"
+      SHOP_MYSQL_DATABASE: "shop-legacy"
+      SHOP_MYSQL_USERNAME: "shopapp"
+      SHOP_MEDIA_FLAVOUR: "ocbc"
+      SHOP_TIMEZONE: "Asia/Singapore"
+      SHOP_OVERRIDE_SESSION_GC_MAXLIFETIME_MINS: "60"
+      SHOP_REDIS_MAX_LIFETIME: "2592000"
+      SHOP_SERVICE_CLIENT_ID: "" #Not sure where it's used
+      SHOP_MAGENTO_THEME: "Cxa/theme-ocbc"
+      SHOP_MAGENTO_THEME_LANGUAGES: "en_US"
+      MAGENTO_REPO_USERNAME: "c302d604b9ee3ef5b55c2ade806d9846"
+      WEB_FLAVOR: "ocbc"
+      MASTER_CARD_SESSION: "https://ap-gateway.mastercard.com/form/version/53/merchant/TEST97485401/session.js"
+      ENABLE_GA:
+      FIREBASE_API_KEY:
+      FIREBASE_AUTH_DOMAIN:
+      FIREBASE_DATABASE_URL:
+      FIREBASE_PROJECT_ID:
+      FIREBASE_STORAGE_BUCKET:
+      FIREBASE_MESSAGING_SENDER_ID:
+      FIREBASE_APP_ID:
+      FIREBASE_MEASUREMENT_ID:
+      CODE_OBFUSCATION: "false"
+      DETECT_ROOTED_DEVICE: "false"
+      SSL_PINNING: "false"
+      SSL_PK: '{"**.cxarefdev.com":["sZesskRgLhNvLTPgoj89iwx4mFKmE0MC1zDkbkWVJYQ=", "NI0vnOAxVDu40f6UL3fBlRarP38ZcsNZLfefxdD3x1Y=", "YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="]}'
+      OVERRIDE_PATHS: '[{"parent": "src/components/heal/src/","child": "src/wrappers/heal/"}]'
+      #RDS Backup
+      S3_ACCESS_KEY_RDS_BACKUP: "AKIAUE7RN6IJQRN7IUU2"
+      #client-service
+      CLIENT_SERVICE_LOG_LEVEL: "debug"
+
+      #shop-service
+      shop_service_Magento_Host: "http://shop.shop"
+      shop_service_Magento_StoreId: "1"
+      shop_service_Magento_StoreCode: "default"
+      shop_service_Magento_ProductsConfiguration_SuggestedCategoryId: "50"
+      shop_service_MerchantId: "00e512446d44a9506b9a0a65aca16729"
+      shop_service_OrderPrefix: "000"
+      shop_service_Magento_Language_StoreCode_Acceptance: "th-TH"
+      SHOP_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      SHOP_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      SHOP_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      SHOP_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      SHOP_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      SHOP_VANILLA_FEATURES_TOGGLE: '{\"C2-4355_FEATURE_TOGGLE\":0,\"C2-11543_INFRA_TOGGLE\":1}'
+
+      #.Net feature toggles
+      FeatureToggle_C2_3210_LoginByPhoneNumber: "false"
+      FeatureToggle_C2_3210_SendSMS: "false"
+      FirstLoginVerification: "false"
+      FeatureToggle_C2_3854_FirstLoginVerification: "false" # deprecated, will be remove
+      FeatureToggle_C2_5072_LoginUnlockedNotification: "false"
+      FeatureToggle_C2_4830_ZuulVersion: "v1"
+      FeatureToggle_C2_4693_CensusFileWithClientReferenceInMemberInsurerIdentifier: "false"
+      FeatureToggle_C2_4715_ReleaseExistingOTPLockDownOnEachPasswordChange: "false"
+      FeatureToggle_C2_4438_ClaimSubmissionEligibilityCheck: "false"
+      FeatureToggle_C2_4838_CSPortalSupportDistributorClients: "true"
+      FeatureToggle_C2_4406_ManageTierForClient: "false"
+      FeatureToggle_C2_4664_Cxa1IntegrationCheck: "false"
+      FeatureToggle_C2_5135_SendNotificationToEEWorkEmailWhenAddedPersonalEmail: "false"
+      FeatureToggle_C2_5144_NotifyMemberWhenTerminatingAccount: "false"
+      FeatureToggle_C2_7753_IgnoreCensusCsvColumnsOrdering: "true"
+      FeatureToggle_C2_6055_UseExternalBenefits: "false"
+      FeatureToggle_C2_6580_EnablePersonalize: "false"
+      FeatureToggle_C2_6805_AuthVerificationMappedUsers: "true"
+      FeatureToggle_C2_7717_SendClaimReferralDocument: "false"
+      FeatureToggle_C2_7672_Shop_EnablePersonalize: "false"
+      FeatureToggle_C2_5530_ImportHealthCheckupResult: "true"
+      FeatureToggle_C2_5168_UseCorrelationIdInMessageQueue: "true"
+      FeatureToggle_C2_5168_UseCorrelationIdInHttpRequest: "true"
+      FeatureToggle_C2_5415_ManagedEmailTemplateViaCMSPortal: "true"
+      FeatureToggle_C2_7753_ImportCxa1WithFederatedId: "true"
+      FEATURE_TOGGLE_EnableTotalRewardsStatements: "true"
+      FEATURE_TOGGLE_ExchangeCheckpointVisitsViaSFTP: "false"
+      FeatureToggle_C2_10064_AllowClientCredentialsImpersonation: "true"
+      FeatureToggle_C2_10363_UsingNewFoldersStructure: "true"
+      FeatureToggle_C2_10720_GetProductNameViaCMSPortal: "true"
+      FEATURE_TOGGLE_C2_9832_AllowEmployeeFutureDateOfHire: "true"
+      FEATURE_TOGGLE_C2_10954_SetDefaultPasswordInCognitoWithBulkImport: "true"
+      FeatureToggle_C2_7320_AllowNonSGContactNumbers: "false"
+      FEATURE_TOGGLE_C2_10792_EnableDependentInvitation: "true"
+      FEATURE_TOGGLE_C2_10792_EnableChangePersonalEmail: "true"
+      FEATURE_TOGGLE_C2_10088_MemberOnboardingAPI: "true"
+      FEATURE_TOGGLE_C2_8111_EnableRetailRegistration: "true"
+      FEATURE_TOGGLE_C2_11471_MemberServiceDataSegregation: "false"
+      FEATURE_TOGGLE_C2_8111_SavePasswordCreationTimeInCognito: "false"
+      FEATURE_TOGGLE_C2_10617_EnableClaims: "true"
+
+      #share feature toggles
+      FEATURE_TOGGLE_C2_7684_UseAwsCognito: "true"
+      FEATURE_TOGGLE_C2_9220_ENABLE_SHOP_CLIENT_CREATION: "true"
+
+      #OL feature toggles
+      FEATURE_TOGGLE_C2_10409_NewWelcomeEmailForCorporateUsers: "true"
+
+      #.Net permanent feature toggles
+      FeatureToggle__ManageTierForClient: "false"
+      FeatureToggle__SupportClientReferenceInCensusInsurerIdentifier: "false"
+      FeatureToggle__NotifyMemberWhenTerminatingAccount: "false"
+      ENABLE_ClientCredentialsImpersonation: "true"
+      ENABLE_DependentInvitation: "true"
+      ENABLE_ChangePersonalEmail: "true"
+      ENABLE_DataSegregation: "false"
+
+      # infra
+      VAULT_ADDR: https://vault.cxanow.com
+
+      # camel-notification-service
+      CAMEL_USERNAME: "camel-service"
+      CAMEL_SFTP_FOLDER_INPUT: "/Input"
+      CAMEL_SFTP_FOLDER_OUTPUT: "/Output"
+      CAMEL_FCM_JOB_CRON: "/5+*+*+*+*+?"
+      CAMEL_FCM_JOB_MAX_BATCH_SIZE: "100"
+      CAMEL_FCM_JOB_RETRY_DELAY_MINUTES: "30"
+      CAMEL_SFTP_JOB_CRON: "0+/1+*+*+*+?"
+      CAMEL_SMS_JOB_CRON: "/5+*+*+*+*+?"
+      CAMEL_SMS_JOB_MAX_BATCH_SIZE: "100"
+      CAMEL_SMS_GATEWAY_ENABLE: "false"
+      CAMEL_DATASOURCE_OPTIONS: "" # Should add usePipelineAuth=false when using sharding
+
+      # camel feature toggles
+      FeatureToggle_C2_7825_RemoteNotificationTemplate: "true"
+      FeatureToggle_C2_9096_DisableUserStatusValidation: "true"
+
+      #Recommendation-service
+      PERSONALIZE_CAMPAIGN: "arn:aws:personalize:ap-southeast-1:285584781843:campaign/cxaref-dev-campaign"
+      RECOMMENTDATION_SERVICE_POLICY_RETRY_ENABLED: "true" # Set 'true' to enable retry policy, otherwise 'false' to disable.
+      RECOMMENTDATION_SERVICE_POLICY_RETRY_FORSTATUSCODES: "" # The additional http response status code that retry policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      RECOMMENTDATION_SERVICE_POLICY_RETRY_COUNT: "3" # The maximum retry attempts for a request.
+      RECOMMENTDATION_SERVICE_POLICY_RETRY_STEPDURATION: "2000" # The duration in millisecond between each retry attempt. Note this duration is multiplied recursively by each retry attempt made for one request.
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_ENABLED: "true" # Set 'true' to enable circuit breaker policy, otherwise 'false' to disable.
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_FORSTATUSCODES: "" # The additional http response status code that circuit breaker policy will be applied besides the HTTP transient errors (network failures, request timeout, server errors). Each status code is separated by a comma.
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_FAILURETHRESHOLD: "0.6" # The proportion of failures at which to break. A double between 0 and 1. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#failurethreshold-1
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_SAMPLINGDURATION: "10000" # The failure rate is considered for actions over this millisecond period. Successes/failures older than the period are discarded from metrics. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#samplingduration-1
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_MINIMUMTHROUGHPUT: "20" # How many calls must have passed through the circuit within the active samplingDuration for the circuit to consider breaking. Ref for more info at https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker#minimum-throughput
+      RECOMMENTDATION_SERVICE_POLICY_CIRCUITBREAKER_DURATIONOFBREAK: "30000" # The duration in millisecond for a break when the circuit is opened.
+      # additional language
+      MAGENTO_ADDITIONAL_LANGUAGES: "th_TH"
+
+      DISTRIBUTION_LIST: ""
+
+    secure_variables:
+      #ETPA JOB
+      HEALS_SG_CLIENT_SECRET: "AES:4CvWhPsXDoD3/xLa7/rYcw==:gULkfsGZRz1wDsjpe9k7aVGwMfj3pMKmtBD1vhbg1oQuk2P6Vy0fkGmVSnJys5iXbq7yTUtDZ70lZeetgC1H0A=="
+      HEALS_HK_CLIENT_SECRET: "AES:egySbfdvpWM1C4WMcyL+Fw==:aSmHZ+gNttr9WNbCAd8HiaDnGdGtfyO8gH11Kv+MaOmXBgNaQwHdtJ8iFmH5BM7tJn38tb7rRNYKJFruf5eWfA=="
+
+      #mobile fastlane
+      FASTLANE_PASSWORD: "AES:nb+vF4W5hFdGUVW7Es+WLw==:P9/KpwBI8h6gDPKGKEKfnIJcUsRvJH2XIkktwczNsus="
+
+      #Azure
+      STORAGE_CONNECTION_AZURE: ""
+      #admin-service
+      ADMIN_SERVICE_MARIA_DB_CONNECTION: "AES:+wZ9VRFM0MaUTgh9ndws4A==:UXt/DkNfxPBbyq8PqUSvacUaTtM9xrVdK3V/HdWEXUrtqubUXpT55WZDCyelaAzdoUGt4lfIilbdH1tzV3TY3Cr2/lDbGyWnREdbHlguRTdaIcqaXUcjIBinQ7C6zNyd"
+      ADMIN_SERVICE_PASSWORD: "AES:S9r79IKQwzXX2/9zu08sUg==:yNO9ok3UVeLDPSmEJyA1DLYHjr1mxqYXUwYZGtHxmQg="
+
+      ANSIBLE_VAULT_PASS: "AES:EiAfH1a9WycRFcnkTkQ9pA==:snv5UR3RIODBWT9RufVaHl3pjJQmeTQt0KTsbsa32/4="
+      APP_CENTER_KEY: "AES:ElWldtWXlEjCkCmlokpm5g==:Rlyzpq62wLN+f2CjhfmIttz+qYSzpiGNfeDkWOJOvjjDbZ5rDmQLrNXKvkKJJLug"
+      AUTH0_CLIENT_ID: "AES:J2/RBYe0TUht1lWv9OAjuA==:FvV3RMCzyhrwKQawku5dn+P26kXV2LNURjm4yswdz7XbXnSlgCAIDQTffl4ZPt47"
+      AUTH0_CLIENT_SECRET: "AES:hpoS6ARUx9ahFkRj4snnGA==:ARQg7+CEEweXZu3JjkPPSVE3xI/yh5nET9CLe5i+UD4oNSnoWC701wE2OwG/Bznuc7VbfEhC53tt3LdG+S+bIM2BvIPdut46XjE8gT1+L/UpSv7kY7X88TPKjKwptf4XAgmeHxhoitvKf9gISiLGxdz48PTguBIHr7q8n6K18tnfFVYszbpgCFiL1cMHJ4Vp"
+      AUTH0_MANAGEMENT_CLIENT_ID: "AES:J2/RBYe0TUht1lWv9OAjuA==:FvV3RMCzyhrwKQawku5dn+P26kXV2LNURjm4yswdz7XbXnSlgCAIDQTffl4ZPt47"
+      AUTH0_MANAGEMENT_CLIENT_SECRET: "AES:hpoS6ARUx9ahFkRj4snnGA==:ARQg7+CEEweXZu3JjkPPSVE3xI/yh5nET9CLe5i+UD4oNSnoWC701wE2OwG/Bznuc7VbfEhC53tt3LdG+S+bIM2BvIPdut46XjE8gT1+L/UpSv7kY7X88TPKjKwptf4XAgmeHxhoitvKf9gISiLGxdz48PTguBIHr7q8n6K18tnfFVYszbpgCFiL1cMHJ4Vp"
+      AZURE_SUBSCRIPTION_ID: ""
+      AZURE_CLIENT_ID: ""
+      AZURE_SECRET: ""
+      AZURE_TENANT: ""
+      COOKIE_SIGN_KEY: "AES:CW2DbGjIdlTZ9rwbvKatYA==:EchEVhFiG9q3pJNOzY/A3lQ2hZ7vgJcnp7hQ6r6wNT0/p1dKrSEbGjmNuTxzMr1Z"
+      CLAIM_SERVICE_PASSWORD: "AES:ni973Sq8uPxh2vSjhShmaQ==:mt4svSvrkOBwx79Z8o9Z6WN/nj9NQ8FgyCpLN3DnNws="
+      CXA_ENVIRONMENT_PASSWORD: ""
+      GITHUB_ACCESS_TOKEN: "AES:GaWMW4DAI/kAhWV2MLZw/A==:xCN8E1ra/apx2PFeQbiN1xOcQaGD1sRvPwSgpW+Fc/qqbWrUDigVOY4I6I2cKgX4"
+      GOCD_AUTO_REGISTER_KEY: "AES:G+Zyn68tKqiEmXxqatQLJg==:q/0tFEaTDzS801UfXQIm5Iii8tLwo8lkwM+UEN9bHn2kD9YFWQ0GTw4/pp4iO1aG"
+      NPM_REGISTRY_TOKEN: "AES:et1j3nNNwq4kdXVtYjzapA==:DqIuZ1PU05CYURdZqpP88eWrIFmWlCQ0NsLInyC1uv2Gi+3XtGxT35Uaxdz9aLbj"
+      PANEL_SERVICE_PASSWORD: ""
+      POSTGRES_DEFAULT_PASSWORD: ""
+      SECURE_RELEASE_KEY_PASSWORD: "AES:TjvGMBpk3coDsVtzwsCGLw==:20MlzAGui/Im79aADy73wsZi8DGCLEKRP+19APO9q04="
+      SECURE_RELEASE_STORE_PASSWORD: "AES:TjvGMBpk3coDsVtzwsCGLw==:20MlzAGui/Im79aADy73wsZi8DGCLEKRP+19APO9q04="
+      STOPLIGHT_PASSWORD: "AES:9DGlwTLNFg8XVFvfZeYHZQ==:mFFIxcK1Wna5wQMvgYy+wA=="
+      WALLET_SERVICE_PASSWORD: ""
+      REDIS_KEY: ""
+      REPO_PASSWORD: "AES:BlBev5AtDAv0t9udM2pYOQ==:lDxSbVRGHmfuHP+H/8ijxE60OT4CGJvdT6vYhyPSPcY="
+
+      SFTP_PASSWORD: "AES:PQe1R9MvdR/E+hCQseKaug==:2rZmbpNpPZdRx0cIPMPf6QT6GEQXlFwaaXk1R/a3fnPMHjz8LqdqHBnBf5cSXJ5J"
+      CMF_API_KEY: "AES:NoroNiHNHivPLlGIEUlf3g==:cmbghCtp+McMHhA7R6zPhWY4p+Pqa4EonXeDo5sftvc/enIwg0oHVVvuSjCudn2t"
+      MANDRILL_APP_KEY: "AES:qiksZxp8oXVS+zgEv+MYkQ==:r4c+DJjzDPHztanqFLJsZ7roK5jhwOfKPsL/TlHwIps="
+      SCORE_ENGINE_API_KEY: "AES:sgssQLpluhIQ055yIakqDw==:N+DPzZxjVAPup0t8FaI8ULlb/V5i7aP4BqjNA1Ve4AGng0tAwS6nP2LknC7+UXsh"
+      API_DOCS_CREDENTIALS_API_KEY: "AES:nXt9MZbe1iWHJaeacnd//Q==:5L3BwobjEYMsHGblfzjFF+PWLfYyb4Yw33P63SMPWxf2wcZk+SEszaGCouZYYYCuNdaoOHNHGJXLc1aXdoVZOH0ckmxcOIWwG0zgFCanNVIwNv0uQfZprAAdbKS93dlhrpOgEAkLuwa2LI7PD6hBAw=="
+      PANEL_SERVICE_GEOCODINGAPI_APIKEY: "AES:Zu0TzrgmYi7tjM4VC9G+dw==:q+sH9cQKDIo8/CTVbtZ475J80vRNvyQJeHQo4uzirZ973GgKEwZaGNLn8OaTLOy2"
+      SENTRY_AUTH_TOKEN: "AES:A45dEwfWvqlupjf6RqjAMA==:w7ccWG4h7tbiJXpX1zw7wJS38HlqjmJj/g6wlZhqazBUQphFIIr4e/JaDc0mLwM4nY2MVLpUiW8f+BjYT3laGnQFSsIXtCgsKoekEts1CXQ="
+      SENTRY_DSN: "AES:QeXeGK8VP5D5nHL4Q6CBRQ==:cHtcpMIprF7W2srhX97vdMQv6MM/r5ka/a2N/hJhB2YJbW/w57Gg3APyCOKZVQo93bveS+k4CnqWBC4/s+Y8auLn2NvlvcFKYV/PyAnsv6Q="
+      CS_SENTRY_DSN: "AES:MyoDWopo/6naCYQGxe4MQA==:hJLS2NnbEYx9lOJFLnRenGHcChHz2Z4jM2EpolHV3VXrx12/YGn+f23llLAuGJvkJ0R/PjgzFHhDc28gU1wws0wZC1yPIbgiUIQe+WK6nr0="
+      VSHOP_SENTRY_DSN: "AES:mUjY+WA97/Rp4pFl8R7VFA==:c54IUKG3Unfx+1mieGVDMvvgjzZ0g+eAtEsU6FX0AJJxeBfE3d4bqXXZNQdIJ3lnRZqhiC5WB/I5hCK1tKIl6VA2TqXbSC4wsGqfh6OSadw="
+      GOOGLE_MAP_API_KEY: ""
+      SLACK_WEBHOOK_URL: "AES:x+XOfF2Wxzw9nZZVmtw/QQ==:iOLPZ419zNzbgxqz4ZLIDuG2ukjn0isOFv27INpY7H53X9SirGo3zyNJcVNeioKOGWvqmTGPbdI5LeTNYbfIwH1LpiLlep1GpPzkxvkwUZM="
+      KUBECONFIG_USER_KEY: "AES:iPHTL3on3yQFWUEtGU59bg==:VKqVXa4eMjGbFynnawSOmZKggpKC0Ipi4Ud/bJQmPRz6HLezUPpyhM43PbgN4UlcmA2OR9kmdmEopWKygBbvdwu3JR+eCb/RhEskOJHhhjhR7dzgNcKB7o2VjVjIlnnDX7nQaYTA9tSI75xOGP6OU32eRahGuOPo0O+BZSaSljpWl3mFynm20z5ady+pgD4d1/pcGFonwtYkYlVS5fgM/EfIqQnxaOzOTpzahV1yJ0YnP3S8A+KoN/wU8nqMHwX+IbEl013jK/Yjnsac3krOIEaCdaG0ARBBwh8U/noOwxOYCsFz9dwJCsxFCRJmzEwG9pzdyuYmPHlfoqk6YZCi8i2QdzN26/pwWkXoDvqo7NRGnMf5sZzXqC203OVtaBfITn7kl/r88hlT269Cr2RYdfJ9n3eB2PepJot72L75Caw/D4xWb0c/f6vT2lmrdTkNH79ae+mFq1qgCinl2qOVVNsj/BTIn7ppNJbeD6CGKUU6wzuS/lXUexbvMrGxopoO5CHT2G/DFtSzL8WhfRpMh0NnNGBVpblV9dkeHnj5tgeRRCWVH4y3DMCm5lw4/oTXS1MjOvLRqISu8AYpSbglmIpYfEQ5CWqWKWM8MeD8B2565G5IvSBtratVsZBfobz7UyaRRGqqjtqIqcHbL1GCFDGJVZkOt2N0BVNn6SklQTIf4dSZPLnlewRDxRyR4nhZ3d/ZMTkNdTkjteMDPJu4kdT4VbdHZ/uMHIpaPmCJFYebbCC8CQhLSUk55LFu3MihTRPG5/vCxCr2oWp57fNyOsKE8XbqUSyY7sXjpEkqt9esXzNSFhKCmJkgAELZlWpxwzb6dFe8zHWUhV9ka5hm9nHOfU9KxQCU5IN2pTpo8eh3TXtBX6pRWofqAuQSunF70i4hqL+82PhY2zQ+Qd1gZMTVaKUTMrfJ3zsm/vzslHuo4coLeq7wgjRRHDK59YfsDDUKLWpWNGCrPQiqVESPs69O4s7FOBORH87FgfWy5mKNavzejgfo19cswuh/EGIzoT8wVxDjlCO6NWR/QnBzt7aOqQ0Ep8ZNj67yStUZMjphpLUoYs5t5KJaCXos+4LhWqU/NEDLQMTuYpdsC7RGJLlfuaXL1x2ZzyPiYZAiuK1uEGmV0jqvx1oXabAhBYL1pHvCM3VNkEf1xy3gh5iAKThbsQdbJPoQPq9UBeRsgF8FBs9Z2+MzPlRt0rkYT2lBN0me2frm1LbrvnUr0Jl5Iw=="
+      MARIADB_ROOT_PASSWORD: "AES:V08AZRMoGh7TIg6Ltlw2nQ==:8KYUnMD2a0NoAJC9qoHepNJ6HCNBnvHPRRT261cFLqs="
+      MARIADB_REPLICATION_USER_PASSWORD: ""
+
+      # S3 access key
+      ADMIN_SERVICE_STORAGE_ACCESS_KEY: "AES:V4taRU/Rml+KE/sOCdKeoQ==:qzBQf8oXL62w5TVJGfqvO2Jjf2teu0TU/I3nPi41LBo="
+      ADMIN_SERVICE_STORAGE_SECRET_KEY: "AES:To3U7Xubb55bw/jLyWZj9w==:V7ayq8jfZGw/jRlr7pmmUX9Om7a9l00R7uSVfHX+T+9pHALJQH5kCX6kkgrQ5L7d"
+      AUTH_LISTENER_STORAGE_ACCESS_KEY: "AES:ghnR2D9cBKhBsjoRpXjS6g==:6RHXHh06l1lbGWiAInY/3iT93HkTlbVxYeMUFGVjRJU="
+      AUTH_LISTENER_STORAGE_SECRET_KEY: "AES:KhE99NLpzGG3aL66gR4Hqg==:Ld2Xc7EjOHF0PRiHQrYm8gUFw6fAdRatHWQMIunxivNyHFIDMvU1xHaiZrWLOvYa"
+      BENEFIT_LISTENER_STORAGE_ACCESS_KEY: "AES:j7DRTTRy0js9eueQZuZ1AQ==:RLF88cmfuUb/Zy39yN0LRWkdx8O045KawefguYjvUn4="
+      BENEFIT_LISTENER_STORAGE_SECRET_KEY: "AES:ZT2ay7xMH18D7Y2F2Mcszg==:/ZfKnirt9rsFNmm3iRnWgNGptNqJwFl+z3FP6FMQV105ktflLBNV9blOsqWVTHx5"
+      CLAIM_SERVICE_STORAGE_ACCESS_KEY: "AES:WYqBnB5oNkFBFO5huPomMw==:Mmicn+AdUXgG/CPlmgdOp/6snGVOU/qkAdTMDyX7sK8="
+      CLAIM_SERVICE_STORAGE_SECRET_KEY: "AES:goVF/AcgVz+HrwtrAtgBAg==:wMJLv3TSfgrvwQ0SnUSg+aX5rR6pyzziP+3yUvc4njN9ljuwhfNjaYjVVNXcsQGG"
+      EWALLET_LISTENER_STORAGE_ACCESS_KEY: "AES:HX81ml+PjL5Hki95O26aIA==:EZw8gz90lfGyPTT0nFNqFqB24z9K78IgpVPBBZznNdE="
+      EWALLET_LISTENER_STORAGE_SECRET_KEY: "AES:Zf7WieT2ER97lSxpeNgSTA==:gQn773D1hW/cn5OWRGw2qRMqUEXUlHXMavWW1lixkeHB7QbpNpoSEDjItqE6rV7f"
+      MEMBER_LISTENER_STORAGE_ACCESS_KEY: "AES:wBHKJWVsPRBA59Lvxi12RA==:HfHZ0uhUAf2gnVivvwKanw4RNv8ZCtXSz1B+B+5dwUk="
+      MEMBER_LISTENER_STORAGE_SECRET_KEY: "AES:Jv3mvwGoHz0qpR5wpThPFA==:WDySyTd9G8l+uYb8DEcnF249AySPs44VcLoL+nErT3wyOgnvoNbo9F0mWUNy/GDY"
+      MEMBER_SERVICE_STORAGE_ACCESS_KEY: "AES:33KK9kDTZcH0nLjAq2RVBA==:dLHnFzrS1rUKYBxWjqNlt7ftxRodvMWKdxb+7eoF5HA="
+      MEMBER_SERVICE_STORAGE_SECRET_KEY: "AES:Dw9iRk9nIJY6wlmt0SKzBQ==:qw1JdEUvZm35zkDE660nKda3bIsIOrw5Wjr42xsQMV/gYMRC6VetI8TIlvu25OcU"
+      NOTIFICATION_LISTENER_STORAGE_ACCESS_KEY: "AES:ENbcjCsPH5NDqJ91WbOB0g==:KV9GJSzkurIbIkNfP0VE4FN7HHQCJYNYzhCjCOtEPBM="
+      NOTIFICATION_LISTENER_STORAGE_SECRET_KEY: "AES:L2THi03/NEI7p72lVdt36w==:dKFhq+VWXsGVB2rQFrMQBHHTIR5HkJbuEu4lZAUCaKYFEE90NU9LqHoYj5ZdEgcv"
+      WELLNESS_SERVICE_STORAGE_ACCESS_KEY: "AES:Y00VnrAXAf/jijiwTpUzXg==:2kAB43uJLEiZGOvWssZeiSQSEc3B8uWDr59A58oXwgU="
+      WELLNESS_SERVICE_STORAGE_SECRET_KEY: "AES:EGPujryN5hisdMga2RbleA==:/Mq1egZpLZ3DxBK+GcYuqwAFBK3zJPT+plGo7vgt5T08bN4izx/KFgUyBRp8ZWzh"
+      CMS_PORTAL_STORAGE_ACCESS_KEY: "AES:q0szwAo3ZePJDnK27+qTxg==:Wph8dtpCTxdN/jTsSyCw8DZifZT0AYFdwnoSYfpPypI="
+      CMS_PORTAL_STORAGE_SECRET_KEY: "AES:TZXxHb3Ey4cnybZfQ+Rh9Q==:vlIjpMd1VMsxp0Qq4MRcOqJEKjw24C2qEcI0loOBq79Y+L8nNB7/nSlGgTD7hO13"
+      CAMEL_NOTIFICATION_SERVICE_STORAGE_ACCESS_KEY: "AES:ogwMVq+edaKD30N4VWrFyQ==:D1NkqX7niIxwg3nNjmpjKlkQE8idBQeOmDDlIYj6jDI="
+      CAMEL_NOTIFICATION_SERVICE_STORAGE_SECRET_KEY: "AES:zkHjw18yLeGl6XwCMeH4Ag==:0gwk890zln1gRiw+yJCt4Nu+Zb5sJcNlWBuIbrbz9OXJt68ZJvcNFBzvmn3P2z8/"
+
+      # AWS credentials
+      ADMIN_SERVICE_ACCESS_KEY: "AES:V4taRU/Rml+KE/sOCdKeoQ==:qzBQf8oXL62w5TVJGfqvO2Jjf2teu0TU/I3nPi41LBo="
+      ADMIN_SERVICE_SECRET_KEY: "AES:To3U7Xubb55bw/jLyWZj9w==:V7ayq8jfZGw/jRlr7pmmUX9Om7a9l00R7uSVfHX+T+9pHALJQH5kCX6kkgrQ5L7d"
+      AUTH_LISTENER_ACCESS_KEY: "AES:ghnR2D9cBKhBsjoRpXjS6g==:6RHXHh06l1lbGWiAInY/3iT93HkTlbVxYeMUFGVjRJU="
+      AUTH_LISTENER_SECRET_KEY: "AES:KhE99NLpzGG3aL66gR4Hqg==:Ld2Xc7EjOHF0PRiHQrYm8gUFw6fAdRatHWQMIunxivNyHFIDMvU1xHaiZrWLOvYa"
+      BENEFIT_LISTENER_ACCESS_KEY: "AES:j7DRTTRy0js9eueQZuZ1AQ==:RLF88cmfuUb/Zy39yN0LRWkdx8O045KawefguYjvUn4="
+      BENEFIT_LISTENER_SECRET_KEY: "AES:ZT2ay7xMH18D7Y2F2Mcszg==:/ZfKnirt9rsFNmm3iRnWgNGptNqJwFl+z3FP6FMQV105ktflLBNV9blOsqWVTHx5"
+      CLAIM_SERVICE_ACCESS_KEY: "AES:WYqBnB5oNkFBFO5huPomMw==:Mmicn+AdUXgG/CPlmgdOp/6snGVOU/qkAdTMDyX7sK8="
+      CLAIM_SERVICE_SECRET_KEY: "AES:goVF/AcgVz+HrwtrAtgBAg==:wMJLv3TSfgrvwQ0SnUSg+aX5rR6pyzziP+3yUvc4njN9ljuwhfNjaYjVVNXcsQGG"
+      EWALLET_LISTENER_ACCESS_KEY: "AES:HX81ml+PjL5Hki95O26aIA==:EZw8gz90lfGyPTT0nFNqFqB24z9K78IgpVPBBZznNdE="
+      EWALLET_LISTENER_SECRET_KEY: "AES:Zf7WieT2ER97lSxpeNgSTA==:gQn773D1hW/cn5OWRGw2qRMqUEXUlHXMavWW1lixkeHB7QbpNpoSEDjItqE6rV7f"
+      MEMBER_LISTENER_ACCESS_KEY: "AES:wBHKJWVsPRBA59Lvxi12RA==:HfHZ0uhUAf2gnVivvwKanw4RNv8ZCtXSz1B+B+5dwUk="
+      MEMBER_LISTENER_SECRET_KEY: "AES:Jv3mvwGoHz0qpR5wpThPFA==:WDySyTd9G8l+uYb8DEcnF249AySPs44VcLoL+nErT3wyOgnvoNbo9F0mWUNy/GDY"
+      MEMBER_SERVICE_ACCESS_KEY: "AES:33KK9kDTZcH0nLjAq2RVBA==:dLHnFzrS1rUKYBxWjqNlt7ftxRodvMWKdxb+7eoF5HA="
+      MEMBER_SERVICE_SECRET_KEY: "AES:Dw9iRk9nIJY6wlmt0SKzBQ==:qw1JdEUvZm35zkDE660nKda3bIsIOrw5Wjr42xsQMV/gYMRC6VetI8TIlvu25OcU"
+      NOTIFICATION_LISTENER_ACCESS_KEY: "AES:ENbcjCsPH5NDqJ91WbOB0g==:KV9GJSzkurIbIkNfP0VE4FN7HHQCJYNYzhCjCOtEPBM="
+      NOTIFICATION_LISTENER_SECRET_KEY: "AES:L2THi03/NEI7p72lVdt36w==:dKFhq+VWXsGVB2rQFrMQBHHTIR5HkJbuEu4lZAUCaKYFEE90NU9LqHoYj5ZdEgcv"
+      WELLNESS_SERVICE_ACCESS_KEY: "AES:Y00VnrAXAf/jijiwTpUzXg==:2kAB43uJLEiZGOvWssZeiSQSEc3B8uWDr59A58oXwgU="
+      WELLNESS_SERVICE_SECRET_KEY: "AES:EGPujryN5hisdMga2RbleA==:/Mq1egZpLZ3DxBK+GcYuqwAFBK3zJPT+plGo7vgt5T08bN4izx/KFgUyBRp8ZWzh"
+      CMS_PORTAL_ACCESS_KEY: "AES:q0szwAo3ZePJDnK27+qTxg==:Wph8dtpCTxdN/jTsSyCw8DZifZT0AYFdwnoSYfpPypI="
+      CMS_PORTAL_SECRET_KEY: "AES:TZXxHb3Ey4cnybZfQ+Rh9Q==:vlIjpMd1VMsxp0Qq4MRcOqJEKjw24C2qEcI0loOBq79Y+L8nNB7/nSlGgTD7hO13"
+      CAMEL_NOTIFICATION_SERVICE_ACCESS_KEY: "AES:ogwMVq+edaKD30N4VWrFyQ==:D1NkqX7niIxwg3nNjmpjKlkQE8idBQeOmDDlIYj6jDI="
+      CAMEL_NOTIFICATION_SERVICE_SECRET_KEY: "AES:zkHjw18yLeGl6XwCMeH4Ag==:0gwk890zln1gRiw+yJCt4Nu+Zb5sJcNlWBuIbrbz9OXJt68ZJvcNFBzvmn3P2z8/"
+
+      # Event Notifications
+      ## Credentials for SNS Access
+      EVENT_NOTIFICATION_ACCESS_KEY: "AES:MIo59PBQAiagn0/v6ZtX9w==:1+NJwP43Jcv+GbW6Iel6fjnmhVgaOpZ1nLb18kb88sc="
+      EVENT_NOTIFICATION_SECRET_KEY: "AES:5FkvzxrJwnQ2cQw1Z1OTjA==:Z9KzrDa4WSW5rrF7v+HrjX/+TOKVK5GR5F/jmc1JUnUWHpRSa78ii7VxCfl1FElH"
+
+      IDENTITY_SERVICE_PASSWORD: "AES:M8yX9vwVr7wvNVSiNjfmlA==:OzqFoOodzMy80/G/eJyrUVGNdxaJjFm9mrLEDU8JELs="
+      IDENTITY_SIGN_KEY: "AES:WUdQ26EUDJKjT/nRpRp2KQ==:NQDO7y/LJJebzJYJuEzYShvYBxA7+1+RoBCP1cN5VEu9HqIpy8pxeNI+p8/l/iV51OIdEltRk24fzXxewfOOXEdWy3QKBViT1QoaxeEvHZnVOmSrQpBtvX6s1LxLbpusv2aY2ZXZBhyxpw2FBIULLt6sKXwynd+1zTTaXBPah815BvvjNsGRt/FBBfeVM6owN7oBrkBzDXYCMKfO28Wy5BJh+E3ANlrgXXmdKT5NubqEwri3IbxVGOYtTTJnyjQ8Pt5knbz1Gih2JhfnJt92ySfRMN8I+EcpKclpkMaGiOMAq5yK9gkIituoPjKVVBMMdHDdArDHwerqFglRgaWRBIbWH7SWC3BTvyO/yR3wDsLTbCPhu3ZK3Kg/NNziSQqtNrSeJj+J6bfd+G6OxKCZT0owL4kqOK1R/Poc6Xc5wNGuNnZFVx3//p/SDuABP9LNqWAhlAyGO+1Ob2kj2HtE/zuyKy8vY7QS3TFTLjyPh9Lt4GwOgnoX5ZUVvNXpqadLcuk9uSTOAiJa+ZdXQ7kJZTIsm75cDxhuIwLGBwovE+u4IY5Pfplbs807HOlP2KbH8bPtqFjPY3Ahk5AKO5yR87z68IPrlZZQOALGEUZm1sNl6Z1lllAx2APjBzoZduEyDga4LZyX9U/RQaWJeTww6RzyxptW9rUPOaYGbM6HoAugERHQuC58fxK72Opn1F5ywDvYOuMgXcEeZXeZaiz+mnoHWUEBoHSMP3WF3+d/r525MXHtlEe4zvJcH4aSje2M4oo6xFGXc2AcJrzuhl94Za+Uxs5c4v5F7SdhJssZAPFBsFC/VneJRL1QytGoGuqVhECvz/bvLJt7J94fWMGBOtpaWBb7ueyyvtku17up3Zad01Z6DTW5hg1kLY7fV5WZYDLaqZ+10aVyYnjS/d+sXNtNahK4TsXVEorFmYSEOVi8NqZOJAEQiMpo/36GWiy0hpXzUWdLiMaImNVeBYCM0837/OZVndoy7F6l2FRQNW3XkR+0hOAFp61tF8Xy2irH0wmhvow5DCOULfAnUCAVlSH208KG1dax3kDq/pk5oYzC8+xhLemxNvYzyGzMj528WI3hYsbiXvw9zbn/hoM39eVjKt6/gWViTGXwy4u8Cttldm4k+0YftrYbDBwP2Vas8eoALpalThL63UtKNcvVSMnWGgTzmwKi8ov+wWPEpdPs3W8PvGh1Kw2bNXkHtjsXQZ4ai6X3sDIhYAjMoX7BXrHyszWmlTfJYlUPhwwtNRW8/oM1zGh7oZ6Osx0/pJlBIRWWR9/jGWD4YXfGrrX1cYa4IGBOv4aQy9Jsy4yiws5j89x17f03lwNPi5jQsD3JVJzBitTuhBWb719uJ5HX2Z9bvN0NNDl6MIqyVwQ3/dUpX+0Q+Nvih5Binnn6NYAbFKg0oIBPLM3A1pErFk2rdlhXZCPCXNjfFPettOwma9zns2p+/fkhRFOUJmy2GuslJWDsnzL24lVcke4KxdsoEvQtyNSx/b9dlcvpft8dH4KuoxSyw3i5mUEwyiWow2/CeywoLeyL6jiZAo++YBZuV+hg8XnL/1motbVfmVGfjgnhExJqoh65DE9nd4YogxdGdQYMdMVE/raYoUUJnlWm06bg1MtuR4ygomJ4xoThGvdjF9siUZueekKPfX1+VZ8IWOjslhJXJZe/1cdYHBRO06Lebb6rWfY94NHGEEnV0PqilmLE2QaqY5iB4/aFERh/RbFAmruFOtLb85DA7uLdl2xQfDa+bpwTjI2W4diTt8Ivio5qw3vOzUYqsLdB6/rQ5aNFATbRzu3vRdL//0FXbOpvhp0dCx5jtp2ZTilSEeX12jd/FD9nKy7MqTYycEjZfe6G6Oc4tb06tbQiH7AuyILnC79X1Va5ib37jOScfzOLZLDKrZp1RWda0l/s6EjKBwF/qPtLwrCGHfFWrZrSxcKreoPJqZ+O4R/VTFDyZXb4Q23l20HDRNa2wW+743YK1LUjlEu9C6pxsgA/fpsgk1xaInG8U935gQNTkZcxJGUGgGjRv0rI8wvTxNYxcZrDEEdF9oeN1n9yu06DkwLX7BlQrrSvRWJGfS19ZUd85icLzFLen7YA2o1IDvgu/uJKP8pGQvcYJaDr3slXAlKvp485xDcF598NwkOKHCjkD8EwY/0IYxhgNkND5+z/OEVbJ1zLH+qTlNiPsaqEKSSFVFiHxiQcB9mnhicnwJKbMdq9qbaHxyfTNTR3PkrFNY8MgWXkdq//OUl9wXYCiyoHADzJwIrTR3pW4YQ4e5qD3RnXHKQ7+jWvwuM6WpE7fOgqK7oK5wi/DiheVbG5+TCgkuTy3LnZii+mSQkvmoLmiHLWy91k6hbnu8MTL4rCxHhzdZF9i+vY8+UmSyvXNYhIrAEuISVKSQ/ehZ9TpPWWjfW7FkEcNgdbHZ0Usxrg+i+Tiuj84Gt8ergrk4KyutNPH4n3ViQxIzge9Uk91CmvyFPcNoeFzrqVZ1uwDUFGyGH8fTLnNVrIfnMkOWHMQAHyMhi19pLpJffVjiSYjU28eHpu1Kq6uH5CHDvh0WnD09ZpArW6rGm0Mn7NhAY8crUNANyLM/IpTGbR4IjeL6VmH/fxg4ZCDC8mW5q3k7RnyURQConzLObrAMT3lZy0BPKU8JtFvd9Ga1uKMrKDQocTbUcS6XSXOdVKBhzLQy2SCPF/dqi6sQwgr/t8tqrhV9k69IYchkCN9V0Sbd1242K45UAABJFLv/yTEDreKHnqsarVBAfFtHLBGPeU4sG2iLK2cEFc4ZKkjDO345J2vK54Na7/DKAtww5VTvW4/6uJcUtOmCKvOkZKHnzDhtpHcMDbweprrQ8DrfQ8FBJ+gvco6alfPksVADEjEaDlfJAsbNrj0avtuJHiatoYhnp3Ci3cEiHvx2KK2G24FVLwIb6UvvY4ajvg75T1whV4UuNyTO6TkbunRe4YgSVVImlatg09XAWlGiZj4V0l0XDUqVkC1yc="
+      IDENTITY_SELFSIGNED_CERT: "AES:Lil8yzXebUiu6vyIGZ3xsg==:6BNZIlPnFQJCvvAC671GCI2mpkT9xO+Bwh1eo+JW26msU/WddbGhdU2twmPMZbJu2JM/qxCKPjrs/N0O8d9lOnt8QH/r87aNfSmjUHwXu3Bdwn48s7BczWknjtg8Uakel4ZBIACVPbUVuDjv3G2udAeoH/vpN3fvbrwRIENf4d9qFZEz8a7odJZ1ln85TNFkODm0C6+pDBwjg8AWN0o3zwZLP6m28p6Z6/8IFzpbXLtq9XoNSFOHVDXGEpDqTBRQntKtTsmk5RIehRhWKMLc5RmBaBn8lt4We9OCF82seuqsGCJKDsm1nbsSdDdr9OJrprZF22lIOTqfm0FuPqEaoCkB+OWFy+AfR60/HryHSQb41msZeAAsgI2wE0/26aqYBCKhJz5dTOF22cpUBQyw8Eki/aObTOSN91NtZLB8f6lTTERf28T2h4EL+4h4gFPeJORaIBApEZjRF3FkEfhCk1Z7yp1vuQs6oOnd686HKd6eCOaRAxks1Zai87iapx7KW+8BuuMAM1OrgZmUEPBtYmoFvIeJlxq1KOMY0/8jf52nTwG6u/BxpyJnC7PnCbT0b2Bi98JJUT61VTtLQzPP7kbSDsxei1nWrIBf8/SpqyT8NHmh/gtCj0jGkXWGqB+Sa5EPqo70ejxNfOxr26/rZpdmOaIhipXFd+dpNPOlPM3jBxmTSaTe50dQOSCPzWj8QsqiLh8t7x95roqNL6NN6VLBD7YwQUp+pDvb6Nd7ZUr4IdDp7H6YtZ2BebsEEW5L90svTbUcHmx8ZbDo9FwmvyCbv/CjCDeaVhHcW1+/38W/yhc5h5HpJfuZz1YHi5WEqpQl/G+5mb/ujNS/B/LcwvI8TDe20SGkkwLX6yczcF3bRlPSnRA7TixI+iNJhQFFzkMt/gvjxQO7Iaz9dgysca977hEFmJZ7N7/ZltudmeXj76VcpR9CbfwZLUhK09OnaJAQDvGXTnXQ+aC9qHTnyPjvlX2SIMxr+BwlAyykOxB+wpHgtbMTs2/iPKmkkPmThcfVd9DglLey4rxdB0s5GjT0nLnCfuc8yPIDDqLjHmZjxVZblOWSPZ5rXhZRpXMrS/vrjB4PqTWX8hZjUzdyH/VF64zB+ypAYNIMCEO89TZEq+Y6c1La4shXR8qUc9l1gpo2c16OERONhb0z3rUGidRYZufTYgVSSTZwvUZTNsoLZs6lSZfVG5+uSIzClY6r38xEg3Ac6wuvOdI8Dr4UpfyM3O0G4pFipXHroOTTCdLssyrJsDFD9ryB8Dhcx6MVFxaFf/ikgdtwkW/8+7zQuYnTVHRDF5M4zYNpKcsBJsqJ3RMeTI2dPS31w1yat085wznlwK0PJ8zQRlly9sibiwsYbcPGz8AzAQ/epnrLkG1RV44zA43U6p/SdRclHQKOuN0fctd6TCIjrndegcjz6uy0TY6HXvA8PjouDotGW+CPW0kB31+aLZmOgda8KpkuCFUWRhJyjuVL0UgF6Mch/0Rpnj3eMkulfSL5QWbAdQTUMQR9mlj74fQnitGtichJyZw7bY8e8k4smYk1Hd4QNn4AyPzYyPPDC7Bipx06UtGolvVRmk2UUOFLdh1tGLHUNat79BDZ6ex8mm+dIzI009UhsI9r5c0ZAI91wUSp0f1mhEA6JRQpmT+5RvyTBQs7RN1TC4SaABGlwzYFY4dpxQ6buW55YLlqmmRrQwv1fJvBU9FrHZPC4mMLSsj8bq1vU+L/AB72CmWv/DZmMHL4jETrJg8FIDhXtOMEMZKhHMX6I0f36xzQzbd7YRgqNu7zl9LKwR1sxGsCJHHuSsURhQjWBt4ZoHYzrx4x0NbgMiSjUmu3lkjVTqig9/u3W0aS"
+      IDENTITY_CS_PORTAL_USER_PASSWORD: "AES:Tzu3dJmHzgJgSJQlglmnfw==:POc7KQ4ecEIOyQao1M1FIcrmp6EzAb0VMCDabNGXLZs="
+      IDENTITY_REDIS_CONNECTION_STRING: "AES:JWpyT5gxpxpVhngjVdDT9Q==:diZVtl1yLMH7MVG6Yj0968nuQ4I4RSNE2qXqjBmj5CkUpc7vfeajR2s2rFM19HKin3HvSAHgR3U7ph5bj0rR941YAn8dhnnfNOUxbcWTkG5XWjY16zVMO0LZ9t0wdiwa"
+      PAYMENT_SERVICE_PASSWORD: "AES:mbc4tWqc9RPI3VAeCUBBvw==:OsNepFoz+Wg3JUlWMS7dQvc4Z5lWd0yTwKVYaHek1Kg="
+      PAYMENT_MPGS_PASSWORD: "AES:TwQ76PUttd2HfdqUcl+hkQ==:uqorAuLZDcj8AIbpixG1nBi6DsZX4O4HuoQM4L81ORBJkXMZTVwJmPKJemHtLXze"
+      PAYMENT_MPGS_CERTP12_FILE: "AES:iCsEJK4jQoIXIRsVbR0kvg==:s/fH1Z5/mu2Jiz2583a5jKM+dfZTEbwOagzp/9RJup9mY82i8Co9VUJF20hO+kfw4LnXf/d5rohbETn6dVOyNA9aIOujqjhm4YSx01oXx+HBWDcOTa3et6dG+styPui8ou4/m4FHaMxlewLAX4KQr7j+q3VQ+sWpRNnGNNJOC4Pf+Zanl+if/wllZwNTXr8iO38KLHFu+a7r4tOKBkTjBMZrVhC1kCEKK3sz8RkGDv1BtQtRTFjZjR5b+5VFc/miLAL6A+485Nm6VWQQpetEYLIaHHFkqkqf8ifZJR8aiVrab3Ma4CiDxkNa8prW8X/G7pWZpfk8waMhbZRjRJ0P5tViMmlL4NXdoN0Fwr54BcU5fuEuHnA2FfsDqkTZt4T24Jv54k4wdfWHNpgmEJCFnQxlL82Z0DTgFzsbSlGTL4R3WbR6PUISqOV70Zv5m3W5jEShGpLUQubDSWi8zI63vj2pAyaFtxnSj+KM4HmME8t1vftIIbZfjorRWArgg9ook+wNBuk5lx4+YGx0yfVTp81hcaZgtX2dRAmEZYq4+wodq1X4b/sRW13JxZ/0aOfchGAew/UZc+1w7ZgayoEeFdpd0VKf+4zk0cMUGDLg6sonrL5iY2/sZEIoammTBMGfYWAoxfwXULujpla1mQzAkndjO4DVnQTpUQd9F0IVIlZor8RBMY1zj4Q+5o8abNo/sNn/HQ0+YDDuZKCc7ER3B2bYOOo/mpHNFfT7jbmj8GEU3f22fFUOVevT61YMXRNWX3X9ndVhLsqo1GT/tKfe8yQTjiPgfAguTEshj60KYfmt6qXGH1fCoCJPzPFn1ttZ3RxdaX4xLxe5GW5XT9lzXeqjyNiN9VCLL7nAvvsiniF4jQC+d9aXQiHGgtq6L0rZ29073e2FbsvlxETEw5WM3lJL4ChM3bFk//6wngtspJAvcjIGVEfhsRXbmcqwXS8vfyWtGIYbBW5miHNp8fwZKh5oZsVlQe+tQK7SJE8G1ESEseA2pcL0hRKEW7N3QeiEBYm2vzyuYKoqjqWKG7qr97XsJpMrQUBZVgWEmmthZkDorILQu7ANaO5CjYR/6fOyur2dicvrpiP46QVU3/ItQn2K4MY0uJdL3FO3sjgUtqEtFyJFtGdJOxELLMoSZCIFW5eKYbkF9rGeqvgLbvkgOXKioyT2RaTmFgJW5l7ljAKiaZvqc5pR1nc1aS2GU2sf0NJO45DCm070ced5NvDuB/D2VzsWc+Ctwe1AycIN/ynb/NcvMQouFaQCesZI3a/0le9pAl2lwI+XZ+Vh5ukNSpRa4nonrD3Y8h1BP0yvuOpwQtd8EgSx75ex7DCefctIKmcZIluji+TGr/4pKFOSAqwu7Svpsc1VAQIlb7mKSXrILWZvJnLZH2oifiLh1BIUpNzv3tQKwsCtOlqdSg8Hz5r3OpXVAi6FFrbwnxEoN3ER32Wja+AtiiXEQ67q7T5N6+Y+JOp0ApWw44LuS9QyYhJOPUX+IaJL3i93GMNmq417QVMMjO8nGT/tlPXp1Um2v45/xqOqH92wb6HHJC6OBkHIt+lGxoFB8DoTu6LwX+zmrDbyTcdLTXHquGs88oDrJ6dyDuFnDfnQLPC01kxbnUH0CtqI7h+urROuxGyZAlUIrf7Qw7EFNu5Fxqhf2iqV8xmEwL1szK2x325RO0qzxiUWDwIhTBEet5VRqGQmBcmDXBbRwYrfJprx7Cu0lOm+03ESSFg8Quk63AzD3zvXQ4jv2aEqaY7dQPnGj3wFOPl4uPIu/h9WRnniTfOV0DOKU+6pyC48G5VUDcxqj2OQ32ini5vhfI1d3RePFKwqXW5+tVg/gA1XCGS5xAxkQ87wZVYbz9XzYmD+80F4w9AX63mfwUdgNhXkyfCVJpKfUFP7bDogUWEl73ipFILjH/8K/y3ssi/eeLj7zaXF75OCacGjJU1gwowtyI7VrrwCuwlEFlOCeUc6jCwsGrlgkaxcHwuH1BgJlJtKwp4yvxtEOcLCaXSci7DQ2PmK0A/Fg7nn9Jmotnrp0sW3n+xsn+S2/ePqldnWyu0UJl702J4L/6qVAMmnaJovm6rBOExlxGXY+j72eA6frZqr48LAf8g1MBITupKjyCvcyGpLYjMG+EEwAQEdZlneXgo6ciTjI9MXn8E+NF8GELhmdzRyrpE53DLz7qOPf43cYlkCcxw0Hqo5Ka5yiPNuCvpIFfIq+1PfJh7jC//ZpJcG5xwq1IFjwJva/7jI+w0ZRh5uTu4Dhe80kmNb56v5vO0zWPZem8jGAc+ondCskqg3lCB2A2tYBW/nbmKyNb1cNRrKiN0O1nCk8gm/fkriOP7qRjxRQ/cnxLz+fYZkt/w6zdGm1tA5WO2MbgWDRPiwjJmeWhKRSB9Eq1vwZGY4aycStWqP/Q6quOIuI/PNqRFQu8RTHaaHCaXvHa20nZHudzeHLpZxsGSAvUZ1IIqfbPDkULwGyacV7TSu/LQoxy0b+uaqjICbYhnZR5P04778mNzIOUKp0soe+eFiHM+H9m4x86h9z583Nbpk0/gwgY334sp6oKEnTurDIhwIIF0m9ysIBAHjD3slS7972q2KnBclAslj2Rt8ImiRTV31pqI2Dfc186+Lk81YhR9X1wzp2jh9c71hiTn9chproBm5xP5GKTH5iQ7vAEqgdkED+rGe5tJLAFpNoF7VnE9Cl25C7CpQSAyTYgHK+W+3C8cjUn68Ruvv6ZAUSEtqPp1E0/++uWSv4a5mgJobol2BcQhhjJC0+GhT8WNtWYuQfZqxNlTWlgIsVr+DCaPmeERw8HahwZqPy5txqlbv2+FJ2biUxcMZxsoc8AyEGmb7IQ0wx9ZbZziv3I5o447TlG91hrN86odUBD6NlONEp1MbAzJ25VStvdn9FLVHu03Rx53/1ZFT4SrI7UAO13S6+1LnfW0+AJ/ybXtScXkBXnKiS3PJk0wj1TYcLDdpkmYUoyMM877uMxttzx7FiTU+6wsgsLyOnoOFIY68SjX7sIOEbmLELWcl9GWuQuia8/4RcsYij4xbumH0zuxSdIByN2dQBihCpwtfIu/wX4gY/QxvK5cjV/Ef/qGvD6BWS4N9UycjSfBW2R4nHfahkI93tt6bQXQOsdH7MaI2e8v3PuhcvH1uohRPFNQDkdEzK3D1h4+ZDKnQR+hyVR3uUvZQb2cvZQUVjK/FsJRr"
+      PAYMENT_MPGS_CERTP12_PASSPHRASE: "AES:P5OumcBtUeFMsaFVV0GeCA==:vWL53ETWBZ9IkK6phy6TP1ZEY89j+WvKQ9UlZkXYDb4="
+      PAYMENT_MPGS_OCBC_IDR_PASSWORD: "AES:GhbqXS87gyfs0f5jT4DRSQ==:ciphDFC1ahitMzzE2WwlNiKJdfSGYttFv09GeJB9m06kuwHUTIEWfmVMl9nadmFd"
+      PAYMENT_MPGS_OCBC_IDR_CERTP12_FILE: "AES:iCsEJK4jQoIXIRsVbR0kvg==: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"
+      PAYMENT_MPGS_OCBC_IDR_CERTP12_PASSPHRASE: "AES:P5OumcBtUeFMsaFVV0GeCA==:vWL53ETWBZ9IkK6phy6TP1ZEY89j+WvKQ9UlZkXYDb4="
+      PAYMENT_MPGS_BOC_HKD_PASSWORD: "AES:0SQEqjUIaxfRtKiwrrWVbg==:jmtK7blIdEbAAkvpbQWBijo20vwtXGJ8gUZ2y5VIqCt0vrQCXvxgchqw4HSyMnt5"
+      PAYMENT_MPGS_BOC_HKD_CERTP12_FILE: "AES:iCsEJK4jQoIXIRsVbR0kvg==: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"
+      PAYMENT_MPGS_BOC_HKD_CERTP12_PASSPHRASE: "AES:P5OumcBtUeFMsaFVV0GeCA==:vWL53ETWBZ9IkK6phy6TP1ZEY89j+WvKQ9UlZkXYDb4="
+      PAYMENT_MPGS_OCBCSHAREPL_SGD_PASSWORD: "AES:kjuAzf/17fVWn8UHGyo6YA==:uU0jl5CQbMYwFLycZz6qjwphhFcLD6uMTr0q/L1eV72kgwo/ggpl0Mgrw/ujU9lO"
+      PAYMENT_MPGS_OCBCSHAREPL_SGD_CERTP12_FILE: "AES:iCsEJK4jQoIXIRsVbR0kvg==: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"
+      PAYMENT_MPGS_OCBCSHAREPL_SGD_CERTP12_PASSPHRASE: "AES:P5OumcBtUeFMsaFVV0GeCA==:vWL53ETWBZ9IkK6phy6TP1ZEY89j+WvKQ9UlZkXYDb4="
+      PAYMENT_MPGS_KBANK_THB_PASSWORD: "AES:4t46HnzpQwQSx7mMDqmc/A==:7I4uTRwYw/RZ+NFZDijLL2LqZ/CIiqkQTnjPNdsxPa+tWnN+K9fbWV/qhACw7BXp"
+      PAYMENT_MPGS_KBANK_THB_CERTP12_FILE: ""
+      PAYMENT_MPGS_KBANK_THB_CERTP12_PASSPHRASE: ""
+      PAYMENT_NOTIFICATION_SECRET: "AES:PyYtVpWlPXezr4V4bH8SCg==:4rO/kIridz0PeEcCh6ZweGjuc/aR8Ys/497nEQTGojdhpTdV0Nlm7J6R1lBrhXjk"
+      PAYMENT_MPGS_NOTIFICATION_SECRET: "AES:0wIyYAUgf7An6CxVy0s8mg==:yv9KQY63SeH2tKd1pYPbQzRbXTLrgUsbgwrl3YTGkVa4nAtWyJVRCU9/WZ8+CY4M"
+      PAYMENT_MPGS_OCBC_IDR_NOTIFICATION_SECRET: "AES:dvEhO6V3P1N1SrrcpDgA1g==:KndMvjL8Yb8TQx+powmWAYxL5+Qo/C/D7LlMQgOJyQ5RicfWWFEK3wszfSSXuiPP"
+      PAYMENT_MPGS_BOC_HKD_NOTIFICATION_SECRET: "AES:04aq+vHBzZ8lLkyz5HoW9A==:bpeiUAZ9SBhQIU+kHsRYiB/1MivPHkeDk7QJpVF/ma31cA4pmnGPbvlHZeuOUiUZ"
+      PAYMENT_MPGS_OCBCSHAREPL_SGD_NOTIFICATION_SECRET: "AES:04aq+vHBzZ8lLkyz5HoW9A==:bpeiUAZ9SBhQIU+kHsRYiB/1MivPHkeDk7QJpVF/ma31cA4pmnGPbvlHZeuOUiUZ"
+      PAYMENT_MPGS_KBANK_THB_NOTIFICATION_SECRET: "AES:0wIyYAUgf7An6CxVy0s8mg==:yv9KQY63SeH2tKd1pYPbQzRbXTLrgUsbgwrl3YTGkVa4nAtWyJVRCU9/WZ8+CY4M"
+      PAYMENT_HMAC_SECRET_KEY: "AES:oK1Rkr55sO3gox59Qhqp8Q==:tqeh8OH2m9pwsGGKNl6XJaKhoNBQWGuMntcXP/eVbITBc1J7VDlJf4hRKrTYfBKf"
+      SHOP_ADMIN_PASSWORD: "AES:Dw04LD2hU5ztyze4w4KQvw==:1nLMF82JsFcSXEjmMTs+03PhDOYGJmgmMzoN2DCURAA="
+      SHOP_MYSQL_PASSWORD: "AES:/69GBvzJBKEK5Tv3Eoo4WQ==:5fBx7FIXsEKih4xeoImXzrAaeeM4UozKe67MhPmWiCA="
+      CLIENT_SERVICE_PASSWORD: "AES:LdefgB7UqY9IhZSxXYhwIg==:1tcohsxpu4vg4hyIUHlHt9WTO+rn1ARqAHui6RRDAsfLw/5+iQiJ87eVajwRgERZ"
+      MAXSCALE_PASSWORD: "AES:WhPX1EKzck5cPrEJ9G95Ig==:95epgJAhDuycAZvlJY+J18VtUEqIUPZL/kMW4sQQHqSa7n0BJFC+xMSzBbmZwpjq"
+      MAXSCALE_EXPORTER_PASSWORD: "AES:/urTxyvJ/pxvSehtNDFLLQ==:MgsTcJT13stWGoiDomrZby0Gueasu3qoOSzXYJwfc9NqG4a50SRZ+fekryEEwZ5l"
+
+      #Auth-service
+      AUTH_SERVICE_DB_CONNECTION: "AES:1ul4mhx5Q+HZU6VpAQUxzw==:O8uokKi4ES0hAMypaELCOMx0Nw/fCN5YymCO4Bn2nG7O7yPIN56iOPviCs2F10llWhHj+Ib5xIfPGe2kgISd/Ux3HkbnCiDUvrBn74J5e+HV731qngE32i39ncqs8teVGB76Y4TEuK/ytFhmx6iOhA=="
+      AUTH_SERVICE_MARIA_DB_CONNECTION: "AES:7exBsF36O8A59maFoBwO0A==:duhpihiYSi1l5/WdmhdDD0a/hgudYqvI0U/w+t4RxwG2xiy/j4b1EzcZr6dUgDika+CYizNQ5BUvgbnki+vsWm395tv6skRT3lIfoy5ejK/Kxw4AZYgyoRuLElCAraAr"
+      AUTH_SERVICE_PASSWORD: "AES:eywS4qYin1hcdUmuAV4lnQ==:V5CESZI7+wfN7RzWgi8Kgf40OWVMG4qZAQXYkyGWbKk="
+      #Benefit-service
+      BENEFIT_SERVICE_DB_CONNECTION: "AES:eGZQua+Zt74CwslHoSdN/g==:MnyYOTZmmk79zeH7IyxtMsIJDI7DfqUQqd75G+cgc99dktWqUAgIbVmDTa3EWIBNbCF9nx08YnT3l1snfxhPQY/hAJz4IanLqkLMh86PY6KoKbVePQV43VG8MQ54jXOwV09c1FbaMmam/LPvFkrBAg7P8Msbtc+eR1wP/nTO9sE="
+      BENEFIT_SERVICE_MARIA_DB_CONNECTION: "AES:qAOliu2CknErlIG51LXkjQ==:iSOg5PdVj5mdufHAWd4SYtz0gYKF8WP/51mdE316bduWWxEY7X6OGGodoZQM3jFD6XL/KEqp9m8aF2lL58/Bb9LuLlFlFBc2aa7k+dIb8us27i2cj4XB5cfjf2E39dGb6xq9thLuX9vW7ych97FcNQ=="
+      BENEFIT_SERVICE_PASSWORD: "AES:2ox/zp9RbbTcurLEINofRA==:lLUg79DaJT70Pp5vsbUueWpecSrgA+125Ug1BKSz7JyW34ZhZJEGtVRB++jiYVhr"
+      EXTERNAL_BENEFIT_GET_STATEMENTS_AUTH_CLIENT_SECRET: ""
+
+      #claim-service
+      CLAIM_SERVICE_MARIA_DB_CONNECTION: "AES:6qg4Aj+pPcpNgI+1vmJozQ==:A4LjHRAWNoxGCbvwQsE+JyvYj9JYwoYoXQxaapU5l0LqtD7xFGSLl4Z3qZ1ADE3zha/IF5bvGbnVc701hR+Gd6hWggqtuYtFYGHJLgaxY96r8vXxDy+rV9Rkq0ledPvrWxjP2B6V/8cOxkB0Svc5pw=="
+      #claim-job
+      CLAIM_JOB_SFTP_PASSWORD: "AES:PQe1R9MvdR/E+hCQseKaug==:2rZmbpNpPZdRx0cIPMPf6QT6GEQXlFwaaXk1R/a3fnPMHjz8LqdqHBnBf5cSXJ5J"
+      CLAIM_JOB_SFTP_PRIVATEKEY: ""
+      CLAIM_JOB_SFTP_PRIVATEKEY_PASSPHRASE: ""
+
+      #Content-service
+      CONTENT_SERVICE_MARIA_DB_CONNECTION: "AES:xPFRkRHJZbfiDVXQNdZcTw==:y/xdLq+VKqRunujP08HXRu5fegAAICsf/Jw5JIF374Zyj3D8qFOgvm3OOXF/Vvr6im5RZZvvOnAHg0Z4Gc5p8v/ixenbg/8wseIvABFWyLnfIBWY951vZn6MuQUtgIANRKxS2xqTJW1YXhG5qzFLMQ=="
+      CONTENT_SERVICE_PASSWORD: "AES:eMOoiuId549oh93vvKtuHA==:bAHfVTiaNCXP4wLczKrsfNkrgovYICkdKAZQ+KmNXl4="
+
+      #member-job
+      MEMBER_JOB_SFTP_PASSWORD: "AES:nWkdLL//z8smij7568Q4KA==:6J3WR/OJWLKcaf8TRYUrjw2V5f44ePaJzazxgZFf0Jc="
+      MEMBER_JOB_SFTP_PRIVATEKEY: ""
+      MEMBER_JOB_SFTP_PRIVATEKEY_PASSPHRASE: ""
+
+      #Recommendation-service
+      RECOMMENDATION_SERVICE_DB_CONNECTION: "AES:kBZx13ZSMKGag7taoLwzDA==:KILI6d8C8xtPLw1Vq7cxzsnResoZ3tn5kCiQjjN8N2GRYtR+jySDD3fPEeSCe37x5DH/YtnHT7fZljGw5Lj/vugsmPxkEh3yAN+Ux9q2Kzmts/SZYOKki6rNKik9jOulmONQ46DXwzEryAF+LGNjeDETkIQWuCxBy3vIAyllO5E="
+      RECOMMENDATION_SERVICE_PASSWORD: "AES:3JF/i3UZ+u1GMW3SIrCNkQ==:xS1xbWT4CR0MmX83VkWls0ckK/VRaup22TCDVaiuvn4="
+
+      # Note that the `shop` oauth client / app is not setup completely yet in Auth0
+      SHOP_SERVICE_CLIENT_SECRET: ""
+      EWALLET_SERVICE_PASSWORD: "AES:hLDqFwEO3jTSOava4XUTDA==:NXDJz29/QRSzV/IE6rUZLU4XiuSNEHuTUrDYarT5+P4="
+      WALLET_LISTENER_QUEUE_KEY: ""
+
+      #Member-service
+      MEMBER_SERVICE_DB_CONNECTION: "AES:k3WEi8vD+bY0XJI50orfvw==:+WPj5o7IXvHu2URCl0n5W/ws8YIUhL4MwxyrOupIJmGlR1o8umH2JvQ3rC0gNUy6voVf8WNijNxWRCuYSp4nXcoUiIEHuaCCKNzn8sVL96v/kzn+bXb1rumSmjIWP51Kx5f8tC+heIhP+AykVLKzoA=="
+      MEMBER_SERVICE_MARIA_DB_CONNECTION: "AES:UcpRhqLFcmVcb/VKLgADeQ==:kG6jVdeXJQyTCek82DmD6+bg7n8fQEDft7HMO0BW8ZOhCg4kmft+OfKGWk/f0cW6uTPurB11vH4y8wgfz9OU5r58l/db09ldf0sDMlocIUJ3XO0iaJkvFo89o+eBEsrn"
+      MEMBER_SERVICE_PASSWORD: "AES:53+kv8agaGvdcyOQW/T1eQ==:xg1pi+CcaTZETJdl6Ir4+8kyFhlioFdTlVtl+4hZ1Sc="
+
+      #Notification-service
+      NOTIFICATION_SERVICE_DB_CONNECTION: "AES:H0j4p/q0QNvTCZJgHCvKcA==:z2EEgIEH9u02CHVoqek1ouzAuPGoMQEkMmX9b3V5ICBI71ICk0vUM8yxdo+qCRhNQZxfwszSncjDEoFsBzM+PbZf6ccz86LMDGO0Zj+PMTwjEk34boDVz14emSO0q2M1HZvsMUOMSgzXGeafuTipWeildotUBg0jmaW/V6Ozbqg="
+      NOTIFICATION_SERVICE_MARIA_DB_CONNECTION: "AES:DMQ2nkb36TdQfc2Yb79fxA==:u/xNPBcEJmlbzQO7Atp/prKjxSPeIhgYr+BXXPFBYauFfU0ygElboazmNpH2rYMeWDIZ2XaJAO4DE9MvQopnZY1/DHwjQqZ4Q5fUjwasEFE1g0btkYA521CPbXFDL14NyeC6lFayw8n6WTPQQWuHdQ=="
+      NOTIFICATION_SERVICE_PASSWORD: "AES:BIohKAGybtjNKfNPD79Hvg==:Tjw0YuRiCCJUboZBSQ9SPBOVrePxAemLVLDQVYQNE5s="
+
+      #Wellness-service
+      WELLNESS_SERVICE_MARIA_DB_CONNECTION: "AES:9KqgwarkEWDghUOSd5Wh9w==:ujN5woLLPWFveKseNPBGFPE1xYjbeVMKDTtq9/o+oAg4la3NPRqt7oUyFpGxVyC3QUIsQZg2Ht1MWrhslz6rJgmupmsgR1xsLZ5g2/KloiCwuxV+A2g53ZQPPlexUkPC0gwMG1aZmdFk1ykX3sGtNg=="
+      WELLNESS_SERVICE_PASSWORD: "AES:YCkPBXKNgtuO1u2MGa2IuA==:j9hsayyIfQk5xd+AImVqq6GJFZZparQhcsZvYxMVCbw="
+
+      # Dynatrace
+      DYNATRACE_API_TOKEN: "AES:K7F0Lh7YvALn026pB/Nd0Q==:WX6IapRLhmJjL3IdhduitHYOpCkzSKMmxRrAbIdjCNY="
+      DYNATRACE_PAAS_TOKEN: "AES:Vk2GYJXSI11LOHSziSwWDA==:dGjrhmiLwlgEiyyLeedIQ1qz0Ag+jvJSZzkgYsQxTsU="
+      DYNATRACE_INSTALLERDOWNLOAD_API_TOKEN: "AES:J9gpptLSPz7epWxpnYVNAw==:Kjyv87UzGKgEf/Nhrp6YshX5yK5WurNdZb+245sktEc="
+      # Mysql Exporter
+      EXPORTER_MYSQL_PASSWORD: "AES:HW24B+NF18LsCASVNRLIEw==:ciE924PpO7RxUCtY8XpnAadz6LO15hb9O/vm3bHFX2w="
+      # Employee-frontend
+      AUTH0_SSO_CLIENT_ID: "AES:Nku0uw/sa2YacieQiCoiRA==:k9T4/Km569qbr3mEh90+MpVBfnbfNoV6vQ+jYp70pmkkKgm+UzmtKEodHfSpdsQ9" #user mobile/web app clientid
+      AUTH0_SSO_CLIENT_SECRET: "AES:lLw/ObhUrgzUSYSSqCqA2w==:31un1ehxqYOlWCuNISGTvh1JOPY7PfY1RRX6bb5vIwJnRi00wGuzIMzZOtQeZQOXcIxFzzTE6HlDx38v6EWs5n9T3u2TRw1mjgCwqEUJTUTJ0vfX7NydO3LLepw7e0ti4XAGnTxU7e9hmmViebtXsXvdzSsVgS4iqkXR3OVXbrhYjgiMnLeguCHy2r33ROH5" #user mobile/web app client secret
+      AUTH0_CUSTOMAUTHORIZATIONTOKEN_PRIVATEKEY: ""
+
+      #RDS Backup
+      S3_SECRET_KEY_RDS_BACKUP: "AES:GG1TegxC3VUkmhvzj+pQvQ==:33X0KCDd37H2rnG24xiu4mRuaJeQUqfJHe0PKfm2S9v0R0fP+w+/kLjl/vZwMpq7"
+
+      MAGENTO_REPO_PASSWORD: "AES:QRIXu0WejR6M+FVO123pew==:1N53n3ZWk1rq25f5qwVWQcsLtx4p+/QPdiaKb9JD0v1udC1jYY2nlRK+g+vBBqzc"
+
+      #ETPA SERVICE
+      ETPA_SERVICE_PASSWORD: "AES:F75v8NXSf0emY9eun1eHKQ==:mae47GAxc8UB9MyukpkQwY2vp3k9T7tPwpT/vizef2k="
+      ETPA_PROVIDER_AUTH_SECRET: "AES:Ql8seuMba17kutAwYLBUjw==:Sxiyr0Bj3+LLlfuXpRfYjJ+6MlG8iDtCg1upi1plNXCl4BOKz2qNtmOxb8fdsQ2l"
+      ETPA_PROVIDER_AUTH_SUBSCRIPTIONKEY: "AES:oPOVI4KNIztrEEUVADDDNw==:apEw8AfXrxqas9nnJztpznb0a7IMUr6A3UYdMCLD4FWxNHdksZhHZnWxA2tuCupO"
+      ETPA_CLINIC_FLOW_PROVIDER_AUTH_SECRET: "AES:7NCcJpoNmZuX50+r7k9ZyA==:wDNeNR1uCavCSIo+N+bvCPSsKb6UGzFI2bVZ+Wjak7WU1vlPtrIYn0zpoyn4M3h/"
+
+      #shop-service
+      SHOP_SERVICE_TOKEN: "AES:5152c3Qp0oQ3bZT1xmMUpw==:66kBPOi1tG4rWGg32vEFuHoseXoLv9GhXaBxReszCXx60WgxtWHcjzrN/3QKyt3f"
+      SHOP_SERVICE_PASSWORD: "AES:RkXzhnNbAQHPQPumzSnMqw==:jbmfejL1DPAiijhsck0F2zkPyoislYmUGhguijGdOUr1AP7WJghmDOQO6sepLi7Q"
+      SHOP_SERVICE_DB_CONNECTION: "AES:gCqVQ8mGSdrfVnkYS6fIaQ==:BwFdUArRCE5nspTOQ1PmBXk2GQtxb0f7/jvOFoVsjQhyZhITMyHHn8EsegRN7vLhMb0YEWQ+Bw6dndfvcBYbhIFO97ZYlTGBEwjvQcvRmnItx21cSubRXk6HBgbgNPVQBZjyfvxg/f8Ocbl3TS0/yA=="
+      SHOP_SERVICE_PAYMENT_NOTIFICATION_SECRET: "AES:2gGr+T0DOHsztSGcEtrskw==:aISBLvE/ieOF/k143rhqqnxpdhI+ZOuKLjJadidx3Q0="
+
+      #Mobile-App
+      ADJUST_APP_TOKEN: "AES:HzC8iR1gMzeJgX4QAlkecA==:nrLdgMIY/H8qjj9692IiHA=="
+      GOOGLE_API_KEY_VALUE: "AES:Es6qLbc90r6rNpDW9ITA2w==:K528mTipbD5IOGzrZVQVOnuhTCSACDfC2nclA/HPD/srllMBIzcryyZJYFWW0pAE"
+      # Vault
+      VAULT_MYSQL_PASSWORD: "AES:v8Y42noe0PkCy9BhSnueQg==:VKl/Jph87Km2i5UWJgY39ASuuG2eQd0q1HsCC8jXQ1S70EKi2ENbZYAmIOKSGYcy"
+
+      # ETL Data Team
+      ETL_MYSQL_PASSWORD: "AES:DtVemfGaqPb9/pG4azVPdw==:zYxoMXzm34725xrP1vNzmjvfYxOOfPeAYTrL7VgnHb5yqC10aKu4EaTCU27QO5yV"
+
+      # CMS portal
+      CMS_PORTAL_PASSWORD: "AES:XKcEv1JN4BqjabcIBS6jkw==:ewj9/1PP/DX/TemGzVR4v9RrC6se5jSc9D/kWDJLwydz9bCnc6K1d9O8EOrgj7qE"
+      CMS_INTERNAL_TOKEN: "AES:GsVqBzCJVYaE9L3O7wp+2Q==:DhK24hnk3cE+kWTwbdQm60nJtswBZxcEm6RlnSo6jG8="
+
+      # camel-notification-service
+      CAMEL_NOTIFICATION_SERVICE_PASSWORD: "AES:KR8NvANz+AO00xjjtrPrDQ==:UoYwNjNaw0YVVDt2lmZwEw=="
+      CAMEL_SFTP_PASSWORD: "AES:d5xmANtS7+IhAPMXlhKRQQ==:mdCJzF20TACDgPJcZCf7M8GhNYNC1yjkCfxCRbKdC28="
+      CAMEL_HSBC_SAML: ""
+      CAMEL_HSBC_CLIENT_SECRET: ""
+
+      FCM_SERVER_KEY: "AES:C2E4/Tb+l0JwqEBLa7mgHA==:7BGPJBOU8e6LR33oMldnDocoe9LOtW5DHg2AvztkQFm+GHPdXeIpg3uICSoQ2hPXaKji3x9UGGkLYvXHjzxilUl9kGeoCVPrfVKB75xR5vhgNWZeti3yAqg1Gp+eA3JhQK/pnlnJ+zl9R0n5NCipEhWBJs6GyDonAGVO0u4FNX6eVECeI9fvpWq0+UKqbTY+dn662PI/vGo4FJfobmxRrw=="
+
+      #identity-service
+      IDENTITY_ENCRYPTION_KEY: "AES:WuiWidNqL4kP3qG+PlMn9Q==:GdNZG7y8xw3+SZPfPxZ1fmQtm/6GNHJ3fJwJ2nokYFcbncdKX2ybsp2+hM/Z3RjuZVMJ3w1YNBmTidQJtlQ7CJqkRhhhbUg6Qu1X2opGEXg="
+      AWS_COGNITO_MANAGE_ADMIN_USERS_SECRET: "AES:u7OZGLSqWLIBB/os0szX6Q==:N/wnF1Crrhy6EWxLULDj1T6Du47aXlfZWO9llFZIQJxoGAFBdiqNtXOI0arTHSsvxBoymwXVYR0ClozM+srSEw=="
+
+      # JIRA Automation
+      JIRA_GOCD_AUTH_TOKEN: "AES:b2ElY1lAriKxxWnNEqc6/w==:7ucB2t4s8GuJbi51P2qSxUUZwBXxyPHTgwCUrkOH/IqUOzMtzbW2kmqNXDHXUqjs"
+      JIRA_API_AUTH_TOKEN: "AES:lTgVyH1PwTlQf2PBBzlyTQ==:x0CoQ/LU0Q7WrA6uOccKJD/zlIqzNSj+Bl7JHsTTqYg="
+
+      ACR_AZURE_SECRET: "AES:Qy7cgEq6WwWrKwamcn2bMg==:yUqZYtBaSQffKxhjZXVDzeL0QwuKKQTfFJrjYfQz7pfyPl48weHYnVy4u+rIgJCs"
